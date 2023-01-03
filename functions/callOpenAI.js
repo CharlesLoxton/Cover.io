@@ -1,8 +1,7 @@
 import { Configuration, OpenAIApi } from "openai"
 
 const configuration = new Configuration({
-  //Testing API key, don't use in production
-  apiKey: "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"
+  apiKey: process.env.OPEN_AI_KEY
 });
 const openai = new OpenAIApi(configuration);
 
