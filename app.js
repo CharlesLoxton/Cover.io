@@ -166,12 +166,8 @@ app.post('/uploaddemo', (req, res) => {
         deleteFile(`./PDFimages/${newFileName}-1.png`);
         deleteFile(`./uploads/${req.file.originalname}`);
 
-        var str = text.ParsedResults[0].ParsedText;
-
-        let demo = await callOpenAI(str);
-
-        demo = demo.substring(0, demo.length / 2);
-        res.send(demo);
+        
+        res.send(newFileName);
     })
 });
 
