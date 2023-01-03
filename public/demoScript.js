@@ -1,4 +1,4 @@
-const btnUpload = document.getElementById("btnUpload");
+const demoBtn = document.getElementById("demoBtn");
 const inputFile = document.getElementById("inputFile");
 const resultText = document.getElementById("resultText");
 let selectedFileName = document.getElementById("fileSelected");
@@ -7,19 +7,19 @@ let loading  = false;
 let currentYear = new Date().getFullYear();
 document.getElementById("date").innerHTML += `${currentYear} ai-cover | All rights reserved`;
 
-btnUpload.addEventListener("click", () => {
+demoBtn.addEventListener("click", () => {
     
     if(loading) return;
     if(inputFile.files[0] == null) return;
 
     resultText.value = "";
-    btnUpload.innerHTML = "Loading..."
+    demoBtn.innerHTML = "Loading..."
     const formData = new FormData();
 
     formData.append("avatar", inputFile.files[0]);
     loading = true;
 
-    fetch("/upload", {
+    fetch("/uploaddemo", {
         method: "post",
         body: formData
     }).then(response => {
@@ -28,7 +28,11 @@ btnUpload.addEventListener("click", () => {
         writeLetter(extractedText);
         console.log(extractedText);
         loading = false;
-        btnUpload.innerHTML = "Upload";
+        demoBtn.innerHTML = "Upload";
+    }).catch((err) => {
+        writeLetter(err);
+        loading = false;
+        demoBtn.innerHTML = "Upload";
     })    
 });
 
@@ -56,4 +60,4 @@ function copyText() {
     }, function(err) {
       console.error('Error copying text: ', err);
     });
-  }
+}

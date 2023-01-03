@@ -24,6 +24,10 @@ function openPaypal(){
         })
       });
 }
+
+function openFree(){
+  location.href = '/demo';
+}
     
 
 

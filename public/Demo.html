@@ -2,21 +2,10 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11058287880"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'AW-11058287880');
-    </script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Create professional cover letters in minutes with our AI-powered cover letter generator. Simply upload your resume and let our tool do the rest. Try it out now!">
-    <meta name="keywords" content="cover letter, cover letter generator, AI, resume writing, job application, cover letter writing, ai-cover, AI-Cover">
-    <title>Packages | AI-Powered Cover Letter Writing Tool</title>
+    <title>Create Cover Letter</title>
     <!-- google-fonts -->
     <!-- //google-fonts -->
     <link rel="shortcut icon" href="AIlogo.png"">
@@ -25,7 +14,7 @@
     <!-- Template CSS Style link -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
     <link rel="stylesheet" href="assets/css/myStyle.css">
-    <link rel="stylesheet" href="assets/css/packageStyle.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="assets/css/CheckoutStyle.css">
 </head>
 
 <body>
@@ -39,7 +28,7 @@
                     </a>
                 </h1>
                 <!-- if logo is image enable this   
-    <a class="navbar-brand" href="#index.html">
+    <a class="navbar-brand" href="#/">
         <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
     </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -55,7 +44,7 @@
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/Package">Create Cover Letter</a>
+                            <a class="nav-link" href="/demo">Create Cover Letter</a>
                         </li>
                         
                         <!-- search button -->
@@ -88,84 +77,80 @@
     <div class="inner-banner">
         <section class="w3l-breadcrumb">
             <div class="container">
-                <h4 class="inner-text-title font-weight-bold mb-2">Choose Package</h4>
+                <h4 class="inner-text-title font-weight-bold mb-2">Free Demo</h4>
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="/">Home</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Choose Package</li>
+                    <li><a href="/Package">Packages</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Free Demo</li>
                 </ul>
             </div>
         </section>
     </div>
     <!-- //inner banner -->
 
-    <section class="w3l-pricingplans">
-        <h6 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>We offer 24/7 <span style="color: blue;">Refund</span> Support if you are unsatisfied with the product</b></h6>
-        <div class='wrapper'>
-            <div class="w3l-packages">
-
-                <!-- Limited package start -->
-                <div class='package'>
-                    <div class='name'>Free Demo</div>
-                    <div class='price'><strong>$0</strong> / once off</div>
-                    <div class='trial'>Available</div>
-                    <hr>
-                    <ul>
-                        <li>
-                            <strong>Unlimited</strong>
-                            uses
-                        </li>
-                        
-                    </ul>
-                    <button class="get" onclick="openFree()">Get started</button>
+    <!-- about2 section -->
+    <section class="w3l-about2 py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row">
+                <div class="content-left col-lg-6">
+                    <h3 class="title-big">Getting Started</h3>
+                    <p class="mt-4">Upload your resume. (.pdf format)</p>
+                    <p class="mt-4">We will show you a preview of your cover letter.</p>
+                    <p class="mt-4">To unlock the rest. Choose the <span><b><a href="/Package" style="color: blue;">Premium</a></b></span> package</p>
+                    <br>
+                    <input class="custom-file-input" type="file" id="inputFile" accept=".pdf">
+                    <label for="inputFile" data-browse>Choose File</label>
+                    <button class="submitButton" type="button" id="demoBtn">Upload</button>
+                    <p id="fileSelected"></p>
                 </div>
-                <!-- Limited package end -->
-
-                <!-- Brilliant package start -->
-                <div class='package brilliant'>
-                    <div class='name'>Basic</div>
-                    <div class='price'><strong>$0.99</strong> / once off</div>
-                    <div class='trial'>Available</div>
-                    <hr>
-                    <ul>
-                        <li>
-                            <strong>1</strong>
-                            Cover Letter
-                        </li>
-                        
-                        <li>
-                            Upload file up to 4mb
-                        </li>
-                        <li>
-                            Save Cover Letter
-                        </li>
-                    </ul>
-                    <button id="BuyBtn" class="get" onclick="openPaypal()">Get started </button>
+                <div class="content-right col-lg-6 pl-lg-4 mt-lg-0 mt-md-5 mt-5 align-self">
+                    <div class="row content4-right-grids mb-lg-5 mb-5">
+                        <div class="col-2 content4-right-icon">
+                            <div class="content4-icon">
+                                <span class="fas fa-blog icon-color"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 content4-right-info">
+                            <h6><a href="#url">
+                                    Upload your resume.</a>
+                            </h6>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="row content4-right-grids mb-lg-5 mb-5">
+                        <div class="col-2 content4-right-icon">
+                            <div class="content4-icon">
+                                <span class="fa fa-cogs icon-color"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 content4-right-info">
+                            <h6><a href="#url">
+                                    Generate Cover Letter</a>
+                            </h6>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="row content4-right-grids">
+                        <div class="col-2 content4-right-icon">
+                            <div class="content4-icon">
+                                <span class="fa fa-link icon-color"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 content4-right-info">
+                            <h6><a href="#url">
+                                    Edit as you like</a>
+                            </h6>
+                            <p></p>
+                        </div>
+                    </div>
                 </div>
-                <!-- Brilliant package end -->
-
-                <!-- Basic package start -->
-                <div class='package'>
-                    <div class='name'>Professional</div>
-                    <div class='price'><strong>$2.99</strong> / once off</div>
-                    <div class='trial'>Coming Soon</div>
-                    <hr>
-                    <ul>
-                        <li>
-                            <strong>5</strong>
-                            Cover Letters
-                        </li>
-                        
-                    </ul>
-                    <button class="get">Unavailable</button>
-                </div>
-                <!-- Basic package end -->
-                
             </div>
-            <h6 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Payments will be made with <span><img src="./assets/images/paypal.png" style="max-width: 50px;"></ima></span>and will be processed as soon as you confirm the review.</b></h6>
+            <div>
+                <div class="outputHeader">
+                    <textarea class="outputText" id="resultText" placeholder="Your cover letter preview will appear here"></textarea>
+                    
+                </div>
+            </div>
         </div>
-        <!-- copyright -->
-        
-        <!-- //copyright -->
     </section>
 
     <!-- footer -->
@@ -183,7 +168,7 @@
                         <div class="row footer-grids pt-4">
                             <div class="col-sm-4 col-6 column">
                                 <ul class="footer-gd-16">
-                                    <li><a href="/""><i class="fa fa-angle-right"
+                                    <li><a href="/"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Home</a></li>
                                     <li><a href="/Package"><i class="fa fa-angle-right" aria-hidden="true"></i>Create Cover Letter</a></li>
                                     
@@ -238,8 +223,8 @@
     <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fas fa-level-up-alt" aria-hidden="true"></span>
     </button>
+    <script src="demoScript.js"></script>
     <script src="SelectedPackage.js"></script>
-    <script src="script.js"></script>
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {

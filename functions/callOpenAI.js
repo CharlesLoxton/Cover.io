@@ -1,11 +1,12 @@
 import { Configuration, OpenAIApi } from "openai"
 
 const configuration = new Configuration({
-  apiKey: process.env.OPEN_AI_KEY,
+  apiKey: process.env.OPEN_AI_KEY
 });
 const openai = new OpenAIApi(configuration);
 
 export const callOpenAI = async (body) => {
+  console.log(process.env.OPEN_AI_KEY);
     try{
       const response = await openai.createCompletion({
         model: "text-davinci-003",
@@ -16,6 +17,6 @@ export const callOpenAI = async (body) => {
 
       return response.data.choices[0].text;
     }catch(err){
-      console.log("Error extracting text with API " + err);
+      console.log("Error with chatGPT " + err);
     }
 }

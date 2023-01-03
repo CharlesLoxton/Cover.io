@@ -19,12 +19,12 @@ paypal.configure({
 const app = express();
 
 app.use((req, res, next) => {
-    // Check if the request URL ends in ".html"
+    // Check if the request URL ends in "Create.html"
     if (req.originalUrl.endsWith('Create.html')) {
-      // If the request URL ends in ".html", return a 404 Not Found response
-      res.sendStatus(403);
+      // If the request URL ends in "Create.html", return a 404 Not Found response
+      res.sendFile(path.join(process.cwd(), './public/index.html'));
     } else {
-      // If the request URL does not end in ".html", allow the request to proceed to the next middleware or route handler
+      // If the request URL does not end in "Create.html", allow the request to proceed to the next middleware or route handler
       next();
     }
   });
@@ -48,7 +48,6 @@ app.get('/', (req, res) => {
   });
 
 app.get('/Create', (req, res) => {
-    // Serve the "index.html" file at the "/" endpoint
 
     if(req.query?.paymentId != null && req.query?.token != null && req.query?.PayerID != null){
 
@@ -58,7 +57,7 @@ app.get('/Create', (req, res) => {
             } else {
               if (payment.state === 'approved') {
                 console.log('Payment has been executed');
-                res.sendStatus(403);
+                res.sendFile(path.join(process.cwd(), './public/index.html'));
               } else {
                 console.log('Payment has not been executed');
                 paypal.payment.execute(req.query.paymentId, { payer_id: req.query.PayerID }, (error, payment) => {
@@ -74,17 +73,15 @@ app.get('/Create', (req, res) => {
             }
           });
     } else {
-        res.sendStatus(403);
+        res.sendFile(path.join(process.cwd(), './public/index.html'));
     }
 });
 
 app.get('/Privacy', (req, res) => {
-    // Serve the "index.html" file at the "/" endpoint
     res.sendFile(path.join(process.cwd(), './public/Privacy.html'));
 });
 
 app.get('/Terms', (req, res) => {
-    // Serve the "index.html" file at the "/" endpoint
     res.sendFile(path.join(process.cwd(), './public/Terms.html'));
 });
 
@@ -94,6 +91,10 @@ app.get('/Checkout', (req, res) => {
 
 app.get('/Package', (req, res) => {
     res.sendFile(path.join(process.cwd(), './public/Package.html'));
+});
+
+app.get('/demo', (req, res) => {
+    res.sendFile(path.join(process.cwd(), './public/Demo.html'));
 });
 
 app.post('/Pay', (req, res) => {
@@ -150,6 +151,27 @@ app.post('/upload', (req, res) => {
         var str = text.ParsedResults[0].ParsedText;
 
         res.send(await callOpenAI(str));
+    })
+});
+
+app.post('/uploaddemo', (req, res) => {
+
+    upload(req, res, async err => {
+
+        const newFileName = req.file.originalname.replace('.pdf', '');
+        await convertPDFToImage(`./uploads/${req.file.originalname}`, `./PDFimages/${newFileName}`);
+
+        let text = await extractText(`./PDFimages/${newFileName}-1.png`);
+
+        deleteFile(`./PDFimages/${newFileName}-1.png`);
+        deleteFile(`./uploads/${req.file.originalname}`);
+
+        var str = text.ParsedResults[0].ParsedText;
+
+        let demo = await callOpenAI(str);
+
+        demo = demo.substring(0, demo.length / 2);
+        res.send(demo);
     })
 });
 
