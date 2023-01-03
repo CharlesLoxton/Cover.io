@@ -159,11 +159,11 @@ app.post('/uploaddemo', (req, res) => {
     upload(req, res, async err => {
 
         const newFileName = req.file.originalname.replace('.pdf', '');
-        await convertPDFToImage(`./uploads/${req.file.originalname}`, `./PDFimages/${newFileName}`);
+        //await convertPDFToImage(`./uploads/${req.file.originalname}`, `./PDFimages/${newFileName}`);
 
-        let text = await extractText(`./PDFimages/${newFileName}-1.png`);
+        //let text = await extractText(`./PDFimages/${newFileName}-1.png`);
 
-        deleteFile(`./PDFimages/${newFileName}-1.png`);
+        //deleteFile(`./PDFimages/${newFileName}-1.png`);
         deleteFile(`./uploads/${req.file.originalname}`);
 
         
