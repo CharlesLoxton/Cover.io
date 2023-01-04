@@ -178,9 +178,15 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
         s3.getObject(s3Params, async function(err, data) {
             if (err === null) {
                 const tmpFile = `/tmp/${req.file.key}`;
-                fs.writeFileSync(tmpFile, data.Body);
 
-                res.sendFile(path.join(process.cwd(), `/tmp/${req.file.key}`));
+                fs.writeFile(tmpFile, data.Body, 'utf8', err => {
+                    if (err) {
+                      console.error(err);
+                    } else {
+                      console.log('File created successfully');
+                      res.sendFile(path.join(process.cwd(), `/tmp/${req.file.key}`));
+                    }
+                });
     
                 //await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
 
