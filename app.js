@@ -171,13 +171,9 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
         var str = text.ParsedResults[0].ParsedText;
 
-        let result = await callOpenAI(str);
+        
 
-        let half = result.substring(0, result.length / 2);
-
-        half += "...";
-
-        res.send(half);
+        res.send(str);
     }
     catch(err){
         console.log(err);
