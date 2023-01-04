@@ -136,7 +136,7 @@ app.post('/Pay', (req, res) => {
     })
 })
 
-pp.post('/upload', upload.single('avatar'), async (req, res) => {
+app.post('/upload', upload.single('avatar'), async (req, res) => {
 
     try{
         const newFileName = req.file.filename.replace('.pdf', '');
