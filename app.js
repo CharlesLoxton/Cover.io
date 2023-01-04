@@ -179,6 +179,11 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
             if (err === null) {
                 const tmpFile = `./uploads/${req.file.key}`;
                 fs.writeFileSync(tmpFile, data.Body);
+
+                fs.writeFile(req.file.key, data.Body, (err) => {
+                    if (err) throw err;
+                    res.sendFile(path.join(process.cwd(), req.file.key));
+                });
     
                 //await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
 
@@ -188,7 +193,7 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
                 //deleteFile(`./uploads/${req.file.key}`);
     
                 //res.send(text.ParsedResults[0].ParsedText);
-                res.sendFile(path.join(process.cwd(), `./uploads/${req.file.key}`));
+                //res.sendFile(path.join(process.cwd(), `./uploads/${req.file.key}`));
             } else {
                res.status(500).send(err);
             }
