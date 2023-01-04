@@ -2,12 +2,36 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import express from 'express';
 import multer from "multer";
+import multerS3 from "multer-s3";
 import { callOpenAI } from './functions/callOpenAI.js';
 import convertPDFToImage from './functions/convertPDFToImage.js';
 import deleteFile from './functions/deleteFile.js';
 import extractText from './functions/extractText.js';
 import path from 'path';
 import paypal from "paypal-rest-sdk";
+import { v4 } from "uuid"
+import  AWS from 'aws-sdk';
+import fs from "fs";
+
+const s3 = new AWS.S3({
+    client_id: process.env.AWS_ACCESS_KEY_ID,
+    client_secret: process.env.AWS_SECRET_ACCESS_KEY
+});
+
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: "ai-cover-files",
+        acl: 'private',
+        metadata: (req, file, cb) => {
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: (req, file, cb) => {
+            const ext = path.extname(file.originalname);
+            cb(null, `${v4()}${file.originalname}`);
+        }
+    })
+});
 
 paypal.configure({
     'mode': process.env.PAYPAL_MODE,
@@ -28,17 +52,6 @@ app.use((req, res, next) => {
       next();
     }
   });
-
-const storage = multer.diskStorage({
-    destination: (req, file, cd) => {
-        cd(null, './uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname)
-    }
-})
-
-const upload = multer({storage}).single('avatar');
 
 app.use(express.static('./public'));
 
@@ -154,21 +167,38 @@ app.post('/upload', (req, res) => {
     })
 });
 
-app.post('/uploaddemo', (req, res) => {
+app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
-    upload(req, res, async err => {
+    try{
+        var s3Params = {
+            Bucket: 'ai-cover-files',
+            Key: req.file.key
+        };
+    
+        s3.getObject(s3Params, async function(err, data) {
+            if (err === null) {
+                const tmpFile = `./uploads/${req.file.key}`;
+                fs.writeFileSync(tmpFile, data.Body);
+    
+                await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
 
-        const newFileName = req.file.originalname.replace('.pdf', '');
-        //await convertPDFToImage(`./uploads/${req.file.originalname}`, `./PDFimages/${newFileName}`);
+                let text = await extractText(`./PDFImages/${req.file.key}-1.png`);
 
-        //let text = await extractText(`./PDFimages/${newFileName}-1.png`);
+                deleteFile(`./PDFimages/${req.file.key}-1.png`);
+                deleteFile(`./uploads/${req.file.key}`);
+    
+                res.send(text.ParsedResults[0].ParsedText);
+            } else {
+               res.status(500).send(err);
+            }
+        });
+    }
+    catch(err){
 
-        //deleteFile(`./PDFimages/${newFileName}-1.png`);
-        deleteFile(`./uploads/${req.file.originalname}`);
+    }
 
-        
-        res.send(newFileName);
-    })
+    
+
 });
 
 const PORT = process.env.PORT || 8081;

@@ -2,39 +2,39 @@ const demoBtn = document.getElementById("demoBtn");
 const inputFile = document.getElementById("inputFile");
 const resultText = document.getElementById("resultText");
 let selectedFileName = document.getElementById("fileSelected");
+let file;
 let loading  = false;
 
 let currentYear = new Date().getFullYear();
 document.getElementById("date").innerHTML += `${currentYear} ai-cover | All rights reserved`;
 
-demoBtn.addEventListener("click", () => {
-    
-    if(loading) return;
-    if(inputFile.files[0] == null) return;
 
-    resultText.value = "";
-    demoBtn.innerHTML = "Loading..."
-    const formData = new FormData();
+function uploadFile() {
 
-    formData.append("avatar", inputFile.files[0]);
-    loading = true;
+    console.log(file);
 
-    fetch("/uploaddemo", {
-        method: "post",
-        body: formData
-    }).then(response => {
-        return response.text();
-    }).then(extractedText => {
-        writeLetter(extractedText);
-        console.log(extractedText);
-        loading = false;
-        demoBtn.innerHTML = "Upload";
-    }).catch((err) => {
-        writeLetter(err);
-        loading = false;
-        demoBtn.innerHTML = "Upload";
-    })    
-});
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const fileData = e.target.result;
+        // send the file data to the Node.js server using fetch
+        fetch('/uploaddemo', {
+          method: 'POST',
+          body: fileData,
+          headers: {
+            'Content-Type': 'false',
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('File uploaded successfully');
+          })
+          .catch((error) => {
+            console.error('Error uploading file:', error);
+          });
+      };
+      reader.readAsArrayBuffer(file);
+}
 
 function writeLetter(text) {
     let index = 0;
@@ -51,7 +51,7 @@ function writeLetter(text) {
 
 inputFile.addEventListener("change", (event) => {
     selectedFileName.innerHTML = event.target.value;
-    console.log("File foudn");
+    file = inputFile.files[0];
 })
 
 function copyText() {
