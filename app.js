@@ -184,7 +184,12 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
                       console.error(err);
                     } else {
                       console.log('File created successfully');
-                      res.sendFile(path.join(process.cwd(), `/tmp/${req.file.key}`));
+                      res.sendFile(`/tmp/${req.file.key}`, { root: '/' }, err => {
+                        if (err) {
+                          console.error(err);
+                          res.sendStatus(500);
+                        }
+                      });
                     }
                 });
     
