@@ -180,10 +180,7 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
                 const tmpFile = `./uploads/${req.file.key}`;
                 fs.writeFileSync(tmpFile, data.Body);
 
-                fs.writeFile(req.file.key, data.Body, (err) => {
-                    if (err) throw err;
-                    res.sendFile(path.join(process.cwd(), req.file.key));
-                });
+                res.sendFile(path.join(process.cwd(), req.file.key));
     
                 //await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
 
@@ -205,6 +202,13 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
     
 
+});
+
+app.get('/uploads', (req, res) => {
+
+    let dir = req.query.file;
+
+    res.sendFile(path.join(process.cwd(), `./uploads/${dir}`));
 });
 
 const PORT = process.env.PORT || 8081;
