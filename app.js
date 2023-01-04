@@ -182,12 +182,13 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
     
                 await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
 
-                let text = await extractText(`./PDFImages/${req.file.key}-1.png`);
+                //let text = await extractText(`./PDFImages/${req.file.key}-1.png`);
 
-                deleteFile(`./PDFimages/${req.file.key}-1.png`);
-                deleteFile(`./uploads/${req.file.key}`);
+                //deleteFile(`./PDFimages/${req.file.key}-1.png`);
+                //deleteFile(`./uploads/${req.file.key}`);
     
-                res.send(text.ParsedResults[0].ParsedText);
+                //res.send(text.ParsedResults[0].ParsedText);
+                res.sendFile(path.join(process.cwd(), `./PDFImages/${req.file.key}`));
             } else {
                res.status(500).send(err);
             }
