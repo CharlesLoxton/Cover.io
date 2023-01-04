@@ -1,20 +1,20 @@
-import fs from "fs";
-import { Poppler } from "node-poppler";
+import pdf2pic from "pdf2pic";
 
-const convertPDFToImage = async (inputPath, outputPath) => {
-
-    const poppler = new Poppler();
+const convertPDFToImage = async (inputPath, outputName) => {
 
     const options = {
-        firstPageToConvert: 1,
-        lastPageToConvert: 1,
-        pngFile: true,
-    };
-
-    // Convert the PDF to an image
-    const res = await poppler.pdfToCairo(inputPath, outputPath, options);
-
-    console.log(res);
+        density: 100,
+        savename: outputName,
+        savedir: "/tmp",
+        format: "png"
+      };
+      
+      pdf2pic.convertPdf2Pic(inputPath, options)
+      .then((resolve) => {
+            console.log("image converted successfully");
+      }).catch((error) => {
+            console.log("Error during conversion: " + error);
+      });
   
 }
 

@@ -162,7 +162,7 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
     try{
         const newFileName = req.file.filename.replace('.pdf', '');
-        await convertPDFToImage(`/tmp/${req.file.filename}`, `/tmp/${newFileName}`);
+        await convertPDFToImage(`/tmp/${req.file.filename}`, `${newFileName}.png`);
 
         
 
@@ -170,7 +170,7 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
         //res.send(str);
 
-        res.sendFile(`/tmp/${newFileName}-1.png`, { root: '/' }, err => {
+        res.sendFile(`/tmp/${newFileName}.png`, { root: '/' }, err => {
             if (err) {
               console.error(err);
               res.sendStatus(500);
