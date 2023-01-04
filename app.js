@@ -161,19 +161,15 @@ app.post('/upload', upload.single('avatar'), async (req, res) => {
 app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
     try{
-        const newFileName = req.file.filename.replace('.pdf', '');
-        await convertPDFToImage(`/tmp/${req.file.filename}`, `/tmp/${newFileName}`);
 
-        let text = await extractText(`/tmp/${newFileName}-1.png`);
+        //res.send(str);
 
-        deleteFile(`/tmp/${newFileName}-1.png`);
-        deleteFile(`/tmp/${req.file.filename}`);
-
-        var str = text.ParsedResults[0].ParsedText;
-
-        
-
-        res.send(str);
+        res.sendFile(`/tmp/${req.file.filename}`, { root: '/' }, err => {
+            if (err) {
+              console.error(err);
+              res.sendStatus(500);
+            }
+          });
     }
     catch(err){
         console.log(err);
