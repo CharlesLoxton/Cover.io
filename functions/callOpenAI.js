@@ -6,7 +6,6 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 export const callOpenAI = async (body) => {
-  console.log(process.env.OPEN_AI_KEY);
     try{
       const response = await openai.createCompletion({
         model: "text-davinci-003",

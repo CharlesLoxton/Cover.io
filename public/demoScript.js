@@ -2,39 +2,36 @@ const demoBtn = document.getElementById("demoBtn");
 const inputFile = document.getElementById("inputFile");
 const resultText = document.getElementById("resultText");
 let selectedFileName = document.getElementById("fileSelected");
-let file;
 let loading  = false;
 
 let currentYear = new Date().getFullYear();
 document.getElementById("date").innerHTML += `${currentYear} ai-cover | All rights reserved`;
 
+demoBtn.addEventListener("click", () => {
+    
+  console.log("Pressed Button")
+    if(loading) return;
+    if(inputFile.files[0] == null) return;
 
-function uploadFile() {
+    resultText.value = "";
+    demoBtn.innerHTML = "Loading..."
+    const formData = new FormData();
 
-    console.log(file);
+    formData.append("avatar", inputFile.files[0]);
+    loading = true;
 
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-        const fileData = e.target.result;
-        // send the file data to the Node.js server using fetch
-        fetch('/uploaddemo', {
-          method: 'POST',
-          body: fileData,
-          headers: {
-            'Content-Type': 'false',
-          },
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log('File uploaded successfully');
-          })
-          .catch((error) => {
-            console.error('Error uploading file:', error);
-          });
-      };
-      reader.readAsArrayBuffer(file);
-}
+    fetch("/uploaddemo", {
+        method: "post",
+        body: formData
+    }).then(response => {
+        return response.text();
+    }).then(extractedText => {
+        writeLetter(extractedText);
+        console.log(extractedText);
+        loading = false;
+        demoBtn.innerHTML = "Upload";
+    })    
+});
 
 function writeLetter(text) {
     let index = 0;
@@ -51,7 +48,7 @@ function writeLetter(text) {
 
 inputFile.addEventListener("change", (event) => {
     selectedFileName.innerHTML = event.target.value;
-    file = inputFile.files[0];
+    console.log("File foudn");
 })
 
 function copyText() {
@@ -60,4 +57,4 @@ function copyText() {
     }, function(err) {
       console.error('Error copying text: ', err);
     });
-}
+  }
