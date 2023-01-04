@@ -206,9 +206,18 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
 app.get('/uploads', (req, res) => {
 
-    let dir = req.query.file;
+    fs.readdir('./uploads', (err, files) => {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      
+        for (let file of files) {
+          console.log(file);
+        }
 
-    res.sendFile(path.join(process.cwd(), `./uploads/${dir}`));
+        res.send({fileNames: files});
+      });
 });
 
 const PORT = process.env.PORT || 8081;
