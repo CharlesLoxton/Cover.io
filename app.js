@@ -177,10 +177,10 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
     
         s3.getObject(s3Params, async function(err, data) {
             if (err === null) {
-                const tmpFile = `./uploads/${req.file.key}`;
+                const tmpFile = `/tmp/${req.file.key}`;
                 fs.writeFileSync(tmpFile, data.Body);
 
-                res.sendFile(path.join(process.cwd(), req.file.key));
+                res.sendFile(path.join(process.cwd(), `/tmp/${req.file.key}`));
     
                 //await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
 
@@ -202,22 +202,6 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
     
 
-});
-
-app.get('/uploads', (req, res) => {
-
-    fs.readdir('./uploads', (err, files) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      
-        for (let file of files) {
-          console.log(file);
-        }
-
-        res.send({fileNames: files});
-      });
 });
 
 const PORT = process.env.PORT || 8081;
