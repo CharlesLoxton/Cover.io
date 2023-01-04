@@ -180,7 +180,7 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
                 const tmpFile = `./uploads/${req.file.key}`;
                 fs.writeFileSync(tmpFile, data.Body);
     
-                await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
+                //await convertPDFToImage(`./uploads/${req.file.key}`, `./PDFImages/${req.file.key}`);
 
                 //let text = await extractText(`./PDFImages/${req.file.key}-1.png`);
 
@@ -188,7 +188,7 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
                 //deleteFile(`./uploads/${req.file.key}`);
     
                 //res.send(text.ParsedResults[0].ParsedText);
-                res.sendFile(path.join(process.cwd(), `./PDFImages/${req.file.key}`));
+                res.sendFile(path.join(process.cwd(), `./uploads/${req.file.key}`));
             } else {
                res.status(500).send(err);
             }
