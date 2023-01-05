@@ -3,7 +3,6 @@ dotenv.config()
 import express from 'express';
 import multer from "multer";
 import { callOpenAI } from './functions/callOpenAI.js';
-import convertPDFToImage from './functions/convertPDFToImage.js';
 import deleteFile from './functions/deleteFile.js';
 import extractText from './functions/extractText.js';
 import path from 'path';
