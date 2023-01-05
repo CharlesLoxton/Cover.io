@@ -8,7 +8,8 @@ import deleteFile from './functions/deleteFile.js';
 import extractText from './functions/extractText.js';
 import path from 'path';
 import paypal from "paypal-rest-sdk";
-import { v4 } from "uuid"
+import { v4 } from "uuid";
+import pdf2pic from "pdf2pic";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -162,20 +163,31 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 
     try{
         const newFileName = req.file.filename.replace('.pdf', '');
-        await convertPDFToImage(`/tmp/${req.file.filename}`, `${newFileName}.png`);
+        //await convertPDFToImage(`/tmp/${req.file.filename}`, `${newFileName}.png`);
 
+        //Problem lies with converting pdf to png, takes too long
+
+        const options = {
+          density: 100,
+          savename: `${newFileName}.png`,
+          savedir: "/tmp",
+          format: "png"
+        };
         
-
+        pdf2pic.convertPdf2Pic(inputPath, options)
+        .then((resolve) => {
+              console.log("image converted successfully");
+              res.sendFile(`/tmp/${newFileName}.png`, { root: '/' }, err => {
+                if (err) {
+                  console.error(err);
+                  res.sendStatus(500);
+                }
+              });
+        }).catch((error) => {
+              console.log("Error during conversion: " + error);
+        });
         
-
         //res.send(str);
-
-        res.sendFile(`/tmp/${newFileName}.png`, { root: '/' }, err => {
-            if (err) {
-              console.error(err);
-              res.sendStatus(500);
-            }
-          });
     }
     catch(err){
         console.log(err);
