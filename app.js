@@ -149,7 +149,7 @@ app.post('/upload', upload.single('avatar'), async (req, res) => {
           .then(async () => {
             let text = await extractText(`/tmp/${newFileName}.png`);
 
-            deleteFile(`/tmp/${newFileName}png`);
+            deleteFile(`/tmp/${newFileName}.png`);
             deleteFile(`/tmp/${req.file.filename}`);
 
             var str = text.ParsedResults[0].ParsedText;
@@ -175,13 +175,21 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
           File: `/tmp/${req.file.filename}`
         }, 'pdf').then(function(result) {
           result.saveFiles('/tmp')
-          .then(() => {
-            res.sendFile(`./tmp/${newFileName}.png`, { root: '/' }, err => {
-              if (err) {
-                console.error(err);
-                res.sendStatus(500);
-              }
-            });
+          .then(async () => {
+            let text = await extractText(`/tmp/${newFileName}.png`);
+
+            deleteFile(`/tmp/${newFileName}.png`);
+            deleteFile(`/tmp/${req.file.filename}`);
+
+            var str = text.ParsedResults[0].ParsedText;
+
+            let result = await callOpenAI(str);
+
+            result = result.substring(0, result.length / 2);
+
+            result += "...";
+
+            res.send(result);
           });
         });
     }
