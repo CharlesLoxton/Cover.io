@@ -9,6 +9,7 @@ import path from 'path';
 import paypal from "paypal-rest-sdk";
 import { v4 } from "uuid";
 import ConvertAPI from 'convertapi';
+import sharp from "sharp";
 
 const convertapi = new ConvertAPI(process.env.CONVERT_API);
 
@@ -140,30 +141,37 @@ app.post('/Pay', (req, res) => {
 
 app.post('/upload', upload.single('avatar'), async (req, res) => {
 
-    try{
-        const newFileName = req.file.filename.replace('.pdf', '');
-        convertapi.convert('png', {
-          File: `/tmp/${req.file.filename}`
-        }, 'pdf').then(function(result) {
-          result.saveFiles('/tmp')
-          .then(async () => {
-            let text = await extractText(`/tmp/${newFileName}.png`);
+  try{
+    const newFileName = req.file.filename.replace('.pdf', '');
 
-            deleteFile(`/tmp/${newFileName}.png`);
-            deleteFile(`/tmp/${req.file.filename}`);
+    convertapi.convert('png', {
+      File: `/tmp/${req.file.filename}`,
+    }, 'pdf').then(function(result) {
+      result.saveFiles('/tmp')
+      .then(async () => {
 
-            var str = text.ParsedResults[0].ParsedText;
+        sharp(`/tmp/${newFileName}.png`).resize({ width: 1024 }).toFile(`/tmp/${newFileName}Resized.png`)
+        .then(async function(newFileInfo) {
+          let text = await extractText(`/tmp/${newFileName}Resized.png`);
 
-            let result = await callOpenAI(str);
+          deleteFile(`/tmp/${newFileName}.png`);
+          deleteFile(`/tmp/${newFileName}Resized.png`);
+          deleteFile(`/tmp/${req.file.filename}`);
 
-            res.send(result);
-          });
+          var str = text.ParsedResults[0].ParsedText;
+
+          res.send(await callOpenAI(str));
+          })
+        .catch(function(err) {
+          console.log("Error occured");
         });
         
-    }
-    catch(err){
-        console.log(err);
-    }
+      });
+    });
+}
+catch(err){
+    console.log(err);
+}
 });
 
 app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
@@ -172,24 +180,33 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
         const newFileName = req.file.filename.replace('.pdf', '');
 
         convertapi.convert('png', {
-          File: `/tmp/${req.file.filename}`
+          File: `/tmp/${req.file.filename}`,
         }, 'pdf').then(function(result) {
           result.saveFiles('/tmp')
           .then(async () => {
-            let text = await extractText(`/tmp/${newFileName}.png`);
 
-            deleteFile(`/tmp/${newFileName}.png`);
-            deleteFile(`/tmp/${req.file.filename}`);
+            sharp(`/tmp/${newFileName}.png`).resize({ width: 1024 }).toFile(`/tmp/${newFileName}Resized.png`)
+            .then(async function(newFileInfo) {
+              let text = await extractText(`/tmp/${newFileName}Resized.png`);
 
-            var str = text.ParsedResults[0].ParsedText;
+              deleteFile(`/tmp/${newFileName}.png`);
+              deleteFile(`/tmp/${newFileName}Resized.png`);
+              deleteFile(`/tmp/${req.file.filename}`);
 
-            let result = await callOpenAI(str);
+              var str = text.ParsedResults[0].ParsedText;
 
-            result = result.substring(0, result.length / 2);
+              let result = await callOpenAI(str);
 
-            result += "...";
+              result = result.substring(0, result.length / 2);
 
-            res.send(result);
+              result += "...";
+
+              res.send(result);
+              })
+            .catch(function(err) {
+              console.log("Error occured");
+            });
+            
           });
         });
     }
