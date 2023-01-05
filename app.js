@@ -176,7 +176,12 @@ app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
         }, 'pdf').then(function(result) {
           result.saveFiles('/tmp')
           .then(() => {
-            res.sendFile(path.join(process.cwd(), `/tmp/${newFileName}.png`));
+            res.sendFile(`./tmp/${newFileName}.png`, { root: '/' }, err => {
+              if (err) {
+                console.error(err);
+                res.sendStatus(500);
+              }
+            });
           });
         });
     }
