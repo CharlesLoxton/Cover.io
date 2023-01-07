@@ -10,6 +10,7 @@ import paypal from "paypal-rest-sdk";
 import { v4 } from "uuid";
 import ConvertAPI from 'convertapi';
 import sharp from "sharp";
+import { callFreeOpenAI } from "./functions/callFreeOpenAI.js";
 
 const convertapi = new ConvertAPI(process.env.CONVERT_API);
 
@@ -44,6 +45,7 @@ app.use((req, res, next) => {
     }
   });
 
+app.use(express.json())
 app.use(express.static('./public'));
 
 app.get('/', (req, res) => {
@@ -98,7 +100,7 @@ app.get('/Package', (req, res) => {
 });
 
 app.get('/demo', (req, res) => {
-    res.sendFile(path.join(process.cwd(), './public/Demo.html'));
+    res.sendFile(path.join(process.cwd(), './public/FreeDemo.html'));
 });
 
 app.post('/Pay', (req, res) => {
@@ -164,6 +166,7 @@ app.post('/upload', upload.single('avatar'), async (req, res) => {
           })
         .catch(function(err) {
           console.log("Error occured");
+          res.send("An error occurred, please try again")
         });
         
       });
@@ -173,6 +176,24 @@ catch(err){
     console.log(err);
 }
 });
+
+app.post(`/freeupload`, async (req, res) => {
+
+  const job = req.body.job;
+  const skills = req.body.skills;
+  const experience = req.body.experience;
+  const education = req.body.education;
+
+  await callFreeOpenAI(job, skills, education, experience)
+  .then((result) => {
+    res.send({text: result.split(/\n\n|  /).filter(item => item !== '')});
+  })
+  .catch((err) => {
+    res.send({text: ["There was an error processing your request, please try again later..."]});
+  });
+
+
+})
 
 app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
 

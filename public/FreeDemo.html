@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11058287880"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -16,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Create professional cover letters in minutes with our AI-powered cover letter generator. Simply upload your resume and let our tool do the rest. Try it out now!">
     <meta name="keywords" content="cover letter, cover letter generator, AI, resume writing, job application, cover letter writing, ai-cover, AI-Cover">
-    <title>Packages | AI-Powered Cover Letter Writing Tool</title>
+    <title>Create Cover Letter Preview</title>
     <!-- google-fonts -->
     <!-- //google-fonts -->
     <link rel="shortcut icon" href="AIlogo.png"">
@@ -25,7 +24,7 @@
     <!-- Template CSS Style link -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
     <link rel="stylesheet" href="assets/css/myStyle.css">
-    <link rel="stylesheet" href="assets/css/packageStyle.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="assets/css/CheckoutStyle.css">
 </head>
 
 <body>
@@ -39,7 +38,7 @@
                     </a>
                 </h1>
                 <!-- if logo is image enable this   
-    <a class="navbar-brand" href="#index.html">
+    <a class="navbar-brand" href="#/">
         <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
     </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
@@ -55,7 +54,7 @@
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="/Package">Create Cover Letter</a>
+                            <a class="nav-link" href="/demo">Create Cover Letter</a>
                         </li>
                         
                         <!-- search button -->
@@ -88,88 +87,52 @@
     <div class="inner-banner">
         <section class="w3l-breadcrumb">
             <div class="container">
-                <h4 class="inner-text-title font-weight-bold mb-2">Choose Package</h4>
+                <h4 class="inner-text-title font-weight-bold mb-2">Free Demo</h4>
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="/">Home</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Choose Package</li>
+                    <li><a href="/Package">Packages</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Free Demo</li>
                 </ul>
             </div>
         </section>
     </div>
     <!-- //inner banner -->
 
-    <section class="w3l-pricingplans">
-        <h6 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>We offer a <span style="color: blue;">Refund</span> policy if you are unsatisfied with the product</b></h6>
-        <div class='wrapper'>
-            <div class="w3l-packages">
-
-                <!-- Limited package start -->
-                <div class='package'>
-                    <div class='name'>Free Demo</div>
-                    <div class='price'><strong>$0</strong> / once off</div>
-                    <div class='trial'>Available</div>
-                    <hr>
-                    <ul>
-                        <li>
-                            <strong>Unlimited</strong>
-                            uses
-                        </li>
-                        <li>
-                            <strong>Manually</strong>
-                            input details
-                        </li>
-                        
-                    </ul>
-                    <button class="get" onclick="openFree()">Get started</button>
+    <!-- about2 section -->
+    <section class="w3l-about2 py-5">
+        <div class="container py-md-5 py-4">
+            <div class="row">
+                <div class="content-left col-lg-6">
+                    <h3 class="title-big" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Getting Started</h3>
+                    <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Complete this form or select the <span><b><a href="/Package" style="color: blue;">Basic</a></b></span> package and upload your resume so that we can generate a cover letter for you.</p>
+                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Job Title</b></h6>
+                    <input class="manInput" placeholder="Junior Software Developer" id="job">
+                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Skills</b></h6>
+                    <input class="manInput" placeholder="SQL, Node.js" id="skills">
+                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Education</b></h6>
+                    <input class="manInput" placeholder="Degree in Computer Science" id="education">
+                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Experience</b></h6>
+                    <textarea id="experience" class="manInputBigger" placeholder="Intern at Microsoft for 6 months, Junior developer at ai-cover for 3 months"></textarea>
+                    <button class="button-style" id="demoBtn" style="margin-top: 20px;"><span
+                        aria-hidden="true">Generate</span></button>
                 </div>
-                <!-- Limited package end -->
-
-                <!-- Brilliant package start -->
-                <div class='package brilliant'>
-                    <div class='name'>Basic</div>
-                    <div class='price'><strong>$0.99</strong> / once off</div>
-                    <div class='trial'>Available</div>
-                    <hr>
-                    <ul>
-                        <li>
-                            <strong>1</strong>
-                            Cover Letter
-                        </li>
-                        
-                        <li>
-                            Upload your resume (.pdf)
-                        </li>
-                        <li>
-                            Save Cover Letter
-                        </li>
-                    </ul>
-                    <button id="BuyBtn" class="get" onclick="openPaypal()">Get started </button>
+                <div class="content-right col-lg-6 pl-lg-4 mt-lg-0 mt-md-5 mt-5 align-self">
+                    <div class="row content4-right-grids mb-lg-5 mb-5">
+                        <!--<img src="./assets/images/Cover Letter.png" style="max-width: 700px;">-->
+                        <div class="coverLetterBack" id="resultText">
+                            <h6 style="text-align: center;" id="outputHeading"><b>Example Output</b></h6>
+                            <p style="font-size: 15px;">Dear Hiring Manager,</p>
+                            <p style="font-size: 15px;">I am writing to express my interest in the Junior Software Developer position at your company. As a computer science graduate and a Microsoft Certified Azure AI Engineer Associate, I have a strong foundation in software development and am excited to continue growing my skills and experience.</p>
+                            <p style="font-size: 15px;">During my time as a Software Engineering Intern at Microsoft and a Junior Developer at ai-cover, I gained valuable experience working with a variety of technologies, including .NET 6, Azure, AWS, Node.js, Redis, MongoDB, MySQL, and Docker. I have a proven track record of delivering high-quality solutions and collaborating effectively with teams.</p>
+                            <p style="font-size: 15px;">I am confident in my ability to contribute to your team as a Junior Software Developer and am eager to use my skills and experience to help your company succeed. I am committed to continuous learning and staying up-to-date with the latest technologies and best practices.</p>
+                            <p style="font-size: 15px;">Thank you for considering my application. I would welcome the opportunity to further discuss how I can contribute to your team as a Junior Software Developer.</p>
+                            <p style="font-size: 15px;">Sincerely,<br>[Your Name]</p>
+                        </div>
+                    </div>
                 </div>
-                <!-- Brilliant package end -->
-
-                <!-- Basic package start -->
-                <div class='package'>
-                    <div class='name'>Professional</div>
-                    <div class='price'><strong>$2.99</strong> / once off</div>
-                    <div class='trial'>Coming Soon</div>
-                    <hr>
-                    <ul>
-                        <li>
-                            <strong>5</strong>
-                            Cover Letters
-                        </li>
-                        
-                    </ul>
-                    <button class="get">Unavailable</button>
-                </div>
-                <!-- Basic package end -->
-                
             </div>
-            <h6 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Payments will be made with <span><img src="./assets/images/paypal.png" style="max-width: 50px;"></ima></span>and will be processed as soon as you confirm the review.</b></h6>
+            <div>
+            </div>
         </div>
-        <!-- copyright -->
-        
-        <!-- //copyright -->
     </section>
 
     <!-- footer -->
@@ -187,7 +150,7 @@
                         <div class="row footer-grids pt-4">
                             <div class="col-sm-4 col-6 column">
                                 <ul class="footer-gd-16">
-                                    <li><a href="/""><i class="fa fa-angle-right"
+                                    <li><a href="/"><i class="fa fa-angle-right"
                                                 aria-hidden="true"></i>Home</a></li>
                                     <li><a href="/Package"><i class="fa fa-angle-right" aria-hidden="true"></i>Create Cover Letter</a></li>
                                     
@@ -242,8 +205,8 @@
     <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fas fa-level-up-alt" aria-hidden="true"></span>
     </button>
+    <script src="demoScript.js"></script>
     <script src="SelectedPackage.js"></script>
-    <script src="script.js"></script>
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {

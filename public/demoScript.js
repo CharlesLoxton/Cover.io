@@ -1,7 +1,6 @@
 const demoBtn = document.getElementById("demoBtn");
-const inputFile = document.getElementById("inputFile");
 const resultText = document.getElementById("resultText");
-let selectedFileName = document.getElementById("fileSelected");
+const heading = document.getElementById("outputHeading");
 let loading  = false;
 
 let currentYear = new Date().getFullYear();
@@ -9,36 +8,68 @@ document.getElementById("date").innerHTML += `${currentYear} ai-cover | All righ
 
 demoBtn.addEventListener("click", () => {
     
-  console.log("Pressed Button")
     if(loading) return;
-    if(inputFile.files[0] == null) return;
 
-    resultText.value = "";
-    demoBtn.innerHTML = "Loading..."
-    const formData = new FormData();
+    const job = document.getElementById("job").value;
+    const skills = document.getElementById("skills").value;
+    const education = document.getElementById("education").value;
+    const experience = document.getElementById("experience").value;
 
-    formData.append("avatar", inputFile.files[0]);
+    demoBtn.innerHTML = "Loading...";
+    deleteNodes();
+    let node = document.createElement("h6");
+    let bold = document.createElement("b");
+    node.style.textAlign = "center";
+    resultText.appendChild(node);
+    node.appendChild(bold);
+    bold.innerHTML = "Generating...";
     loading = true;
 
-    fetch("/uploaddemo", {
+    let params = {
+      job,
+      skills,
+      education,
+      experience
+    }
+
+    fetch("/freeupload", {
         method: "post",
-        body: formData
+        body: JSON.stringify(params),
+        headers: {
+          'Content-Type': 'application/json'
+        }
     }).then(response => {
         return response.text();
     }).then(extractedText => {
-        writeLetter(extractedText);
-        console.log(extractedText);
+        
+      deleteNodes();
+      let node = document.createElement("h6");
+      let bold = document.createElement("b");
+      node.style.textAlign = "center";
+      resultText.appendChild(node);
+      node.appendChild(bold);
+      bold.innerHTML = "Cover Letter";
+
+      JSON.parse(extractedText).text.forEach((element) => {
+        console.log(element);
+        let node = document.createElement("p");
+        node.style.fontSize = "15px";
+        node.innerHTML = "";
+        writeLetter(node, element);
+        resultText.appendChild(node);
+      })
         loading = false;
         demoBtn.innerHTML = "Upload";
     })    
 });
 
-function writeLetter(text) {
-    let index = 0;
+function writeLetter(node, text) {
 
-    const interval = setInterval(() => {
-        resultText.value += text[index];
-        index++;
+  let index = 0;
+
+  const interval = setInterval(() => {
+    node.innerHTML += text[index];
+    index++;
 
     if (index >= text.length) {
       clearInterval(interval);
@@ -46,15 +77,6 @@ function writeLetter(text) {
   }, 25);
 }
 
-inputFile.addEventListener("change", (event) => {
-    selectedFileName.innerHTML = event.target.value;
-    console.log("File foudn");
-})
-
-function copyText() {
-    navigator.clipboard.writeText(resultText.value).then(function() {
-      console.log('Text copied to clipboard');
-    }, function(err) {
-      console.error('Error copying text: ', err);
-    });
-  }
+function deleteNodes() {
+  resultText.innerHTML = "";
+}
