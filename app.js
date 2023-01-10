@@ -103,6 +103,30 @@ app.get('/demo', (req, res) => {
     res.sendFile(path.join(process.cwd(), './public/FreeDemo.html'));
 });
 
+app.get('/success', (req, res) => {
+  paypal.payment.get(req.query?.paymentId, (error, payment) => {
+    if (error) {
+      res.sendFile(path.join(process.cwd(), './public/index.html'));
+    } else {
+      if (payment.state === 'approved') {
+        console.log('Payment has been executed');
+        res.sendFile(path.join(process.cwd(), './public/Success.html'));
+      } else {
+        console.log('Payment has not been executed');
+        paypal.payment.execute(req.query.paymentId, { payer_id: req.query.PayerID }, (error, payment) => {
+            if (error) {
+              console.error(error);
+            } else {
+              console.log('Payment executed successfully');
+            }
+        });
+        
+        res.sendFile(path.join(process.cwd(), './public/Success.html'));
+      }
+    }
+  });
+});
+
 app.post('/Pay', (req, res) => {
     
     var create_payment_json = {
@@ -139,6 +163,48 @@ app.post('/Pay', (req, res) => {
             res.send({links: payment.links})
         }
     })
+})
+
+app.post('/PayDemo', (req, res) => {
+
+  let bodyString = JSON.stringify(req.body.text);
+  let encodedNumbers = encodeURIComponent(bodyString);
+  let baseUrl = `${process.env.SUCCESS_URL}?text=${encodedNumbers}`;
+
+  var create_payment_json = {
+      "intent": "sale",
+      "payer": {
+          "payment_method": "paypal"
+      },
+      "redirect_urls": {
+          "return_url": baseUrl,
+          "cancel_url": process.env.DEMO_URL
+      },
+      "transactions": [{
+          "item_list": {
+              "items": [{
+                  "name": "Basic Plan",
+                  "sku": "Cover Letter",
+                  "price": "0.49",
+                  "currency": "USD",
+                  "quantity": 1
+              }]
+          },
+          "amount": {
+              "currency": "USD",
+              "total": "0.49"
+          },
+          "description": "AI-Cover Basic Plan. 1 Cover Letter"
+      }]
+  };
+
+  paypal.payment.create(create_payment_json, function(error, payment){
+      if(error){
+          console.log(error);
+      } else {
+          res.send({links: payment.links})
+      }
+  })
 })
 
 app.post('/upload', upload.single('avatar'), async (req, res) => {
@@ -186,54 +252,15 @@ app.post(`/freeupload`, async (req, res) => {
 
   await callFreeOpenAI(job, skills, education, experience)
   .then((result) => {
-    res.send({text: result.split(/\n\n|  /).filter(item => item !== '')});
+    //createPDF(result, res);
+    res.send({text: result.split(/\n\n|  /).filter(item => item !== ''), error: false});
   })
   .catch((err) => {
-    res.send({text: ["There was an error processing your request, please try again later..."]});
+    console.log(err);
+    res.send({text: ["There was an error processing your request, please try again later..."], error: true});
   });
 
 
-})
-
-app.post('/uploaddemo', upload.single('avatar'), async (req, res) => {
-
-    try{
-        const newFileName = req.file.filename.replace('.pdf', '');
-
-        convertapi.convert('png', {
-          File: `/tmp/${req.file.filename}`,
-        }, 'pdf').then(function(result) {
-          result.saveFiles('/tmp')
-          .then(async () => {
-
-            sharp(`/tmp/${newFileName}.png`).resize({ width: 1024 }).toFile(`/tmp/${newFileName}Resized.png`)
-            .then(async function(newFileInfo) {
-              let text = await extractText(`/tmp/${newFileName}Resized.png`);
-
-              deleteFile(`/tmp/${newFileName}.png`);
-              deleteFile(`/tmp/${newFileName}Resized.png`);
-              deleteFile(`/tmp/${req.file.filename}`);
-
-              var str = text.ParsedResults[0].ParsedText;
-
-              let result = await callOpenAI(str);
-
-              result = result.substring(0, result.length / 2);
-
-              result += "...";
-
-              res.send(result);
-              })
-            .catch(function(err) {
-              console.log("Error occured");
-            });
-            
-          });
-        });
-    }
-    catch(err){
-        console.log(err);
-    }
 });
 
 const PORT = process.env.PORT || 8081;
