@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://www.ai-cover.io/sitemap.xml

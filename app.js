@@ -91,10 +91,6 @@ app.get('/Terms', (req, res) => {
     res.sendFile(path.join(process.cwd(), './public/Terms.html'));
 });
 
-app.get('/Checkout', (req, res) => {
-    res.sendFile(path.join(process.cwd(), './public/Checkout.html'));
-});
-
 app.get('/Package', (req, res) => {
     res.sendFile(path.join(process.cwd(), './public/Package.html'));
 });
@@ -102,6 +98,15 @@ app.get('/Package', (req, res) => {
 app.get('/demo', (req, res) => {
     res.sendFile(path.join(process.cwd(), './public/FreeDemo.html'));
 });
+
+app.get('/sitemap.xml', function(req, res) {
+  res.sendFile(path.join(process.cwd(), './sitemap.xml'));
+});
+
+app.get('/robots.txt', function(req, res) {
+  res.sendFile(path.join(process.cwd(), './robots.txt'));
+});
+
 
 app.get('/success', (req, res) => {
   paypal.payment.get(req.query?.paymentId, (error, payment) => {
@@ -116,12 +121,12 @@ app.get('/success', (req, res) => {
         paypal.payment.execute(req.query.paymentId, { payer_id: req.query.PayerID }, (error, payment) => {
             if (error) {
               console.error(error);
+              res.send("Error with payment");
             } else {
               console.log('Payment executed successfully');
+              res.sendFile(path.join(process.cwd(), './public/Success.html'));
             }
         });
-        
-        res.sendFile(path.join(process.cwd(), './public/Success.html'));
       }
     }
   });
