@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11058287880"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -11,12 +10,13 @@
 
         gtag('config', 'AW-11058287880');
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Create professional cover letters in minutes with our AI-powered cover letter generator. Simply upload your resume and let our tool do the rest. Try it out now!">
     <meta name="keywords" content="cover letter, cover letter generator, AI, resume writing, job application, cover letter writing, ai-cover, AI-Cover">
-    <title>Terms & Conditions | AI-Cover</title>
+    <title>Create Cover Letter Preview</title>
     <!-- google-fonts -->
     <!-- //google-fonts -->
     <link rel="shortcut icon" href="AIlogo.png"">
@@ -25,6 +25,7 @@
     <!-- Template CSS Style link -->
     <link rel="stylesheet" href="assets/css/style-starter.css">
     <link rel="stylesheet" href="assets/css/myStyle.css">
+    <link rel="stylesheet" href="assets/css/CheckoutStyle.css">
 </head>
 
 <body>
@@ -54,9 +55,11 @@
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Package">Create Cover Letter</a>
+                            <a class="nav-link" href="/Package">Create</a>
                         </li>
-                        
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/blogs">Blogs</a>
+                        </li>
                         <!-- search button -->
                         <div class="search-right ml-lg-3">
                             <div class="search-right ml-lg-3">
@@ -96,10 +99,10 @@
     <div class="inner-banner">
         <section class="w3l-breadcrumb">
             <div class="container">
-                <h4 class="inner-text-title font-weight-bold mb-2">Terms & Conditions</h4>
+                <h4 class="inner-text-title font-weight-bold mb-2">How to write a Cover Letter</h4>
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="/">Home</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Terms & Conditions</li>
+                    <li><a href="/blogs">Blogs</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>How to write a Cover Letter</li>
                 </ul>
             </div>
         </section>
@@ -107,45 +110,173 @@
     <!-- //inner banner -->
 
     <!-- about2 section -->
-    <section class="w3l-about2 py-5">
-        <div style="text-align: center; margin: auto; width: 50%;">
-            <div style="margin-top: -20px;">
-                <p>
-                    These terms and conditions ("Terms") govern your use of the ai-cover.io website and services. By accessing or using our website and services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you may not use our website or services.
-                </p>
-            </div>
-            <div>
-                <br>
-                <h5 class="inner-text-title font-weight-bold mb-2">Use of Our Website and Services</h5>
-                <p">You may use our website and services only for lawful purposes and in accordance with these Terms. You agree not to use our website or services in any way that violates any applicable federal, state, local, or international law or regulation.</p>
-                <br>
-                <p>We reserve the right to modify or discontinue our website and services, or to restrict or terminate your access to our website and services, at any time and without notice. We will not be liable to you or any third party for any modifications, suspensions, or discontinuances of our website or services.</p>
-            </div>
-            <div>
-                <br>
-                <h5 class="inner-text-title font-weight-bold mb-2">Intellectual Property</h5>
-                <p>The content and materials on our website, including but not limited to text, graphics, images, software, and trademarks, are the property of ai-cover.io or its licensors and are protected by copyright and trademark laws. You may not use any of the content or materials on our website for any commercial purpose without the express written consent of ai-cover.io.</p>
-            </div>
-            <div>
-                <br>
-                <h5 class="inner-text-title font-weight-bold mb-2">Limitation of Liability</h5>
-                <p>We make no representations or warranties about the accuracy, completeness, reliability, or availability of our website or services. We will not be liable for any damages or losses that may arise from your use of our website or services.</p>
-                
-            </div>
-            <div>
-                <br>
-                <h5 class="inner-text-title font-weight-bold mb-2">Governing Law</h5>
-                <p>These Terms and your use of our website and services will be governed by and construed in accordance with the laws of the State without giving effect to any principles of conflicts of law. Any dispute arising out of or relating to these Terms or your use of our website or services will be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
-            </div>
-            <div>
-                <br>
-                <h5 class="inner-text-title font-weight-bold mb-2">Changes to These Terms</h5>
-                <p>We reserve the right to update these Terms from time to time. We will notify you of any changes by posting the revised Terms on our website. Your continued use of our website and services after the revised Terms have been posted will constitute your acceptance of the revised Terms.</p>
-            </div>
-            <div>
-                <br>
-                <h5 class="inner-text-title font-weight-bold mb-2">Contact Us</h5>
-                <p>If you have any questions or concerns about these Terms or our website and services, please contact us at info@ai-cover.io</p>
+    <section class="text-11 py-5">
+        <div class="text11 py-md-5 py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 text11-content m-auto">
+                        <br>
+                        <div id="blogPost">
+                            <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; margin-top: 10px; margin-left: 10px;">
+                                <h4><b>How to write a Cover Letter</b></h4>
+                                <br>
+                                <h6><span class="fa fa-user mr-1 icon-color"></span>Charles Loxton Jan 14, 2023.</h6>
+                                <a href="#post" class="post"> Software Engineer</a>
+                            </div>
+                        
+                        <img src="assets/images/transparent.png" class="img-fluid img-responsive" alt="" />
+                        </div>
+                        <br>
+                        <h5 class="quote"><b><em>
+                            "Your resume is a piece of paper; your cover letter is your sales pitch. Together, they tell the employer who you are and what you can do."
+                            </em>
+                            </b>
+                            <footer class="blockquote-footer mt-3"> Jimmy Sweeney, Professional Career Coach</footer>
+                        </h5>
+                        <p class="mt-4 mb-3">Creating a cover letter can seem like a daunting task, but it doesn't have to be. A cover letter is your opportunity to make a great first impression on a potential employer and showcase your qualifications for a specific job. By following these tips, you can create a cover letter that will help you stand out from the competition and land your dream job.</p>
+                        
+                        <p class="mb-3">First, research the company and the job you are applying for. This will help you tailor your cover letter to the specific position and demonstrate to the employer that you are genuinely interested in the role. Look for information about the company's mission, values, and culture, as well as the responsibilities and qualifications listed in the job posting.</p>
+                        <p class="mb-3">Next, use a professional and appropriate tone in your cover letter. Avoid using overly casual language or slang, and stick to a formal, business-like tone. This will demonstrate to the employer that you are serious about the opportunity and that you have the professional demeanor they are looking for.</p>
+                        <div class="sing-post-thumb mb-lg-5 mb-4 row pt-3">
+                            <div class="col-md-6">
+                                <a href="#url"><img src="assets/images/writing.png" class="img-fluid img-responsive"
+                                        alt=""></a>
+                            </div>
+                            <div class="col-md-6 mt-md-0 mt-3 align-self">
+                                <p class="">When writing your cover letter, make sure to highlight your relevant skills and experiences. Use specific examples and quantify your achievements, if possible.</p>
+                                <p class="mt-3">This will help the employer see how your qualifications align with the job requirements and how you can add value to their organization.</p>
+                            </div>
+                        </div>
+                        <h4 class="mb-md-4 mb-3"><b>Important aspects to remember when creating a Cover Letter:</b></h4>
+                        <div class="text-list mb-4">
+                            <ol>
+                                <li>The first important aspect of creating a cover letter is formatting. Make sure that your cover letter is easy to read and visually appealing. Use bullet points and clear, concise language. Use a standard font, such as Times New Roman or Arial, and keep your cover letter to one page.</li>
+                                <br>
+                                <li>Additionally, it is important to proofread your cover letter before submitting it. This will help you catch any grammatical errors or typos that could make a bad impression on the employer. Consider asking a friend or a professional to review your cover letter as well.</li>
+                                <br>
+                            </ol>
+                        </div>
+                        <p class="mb-3">Remember, a cover letter is your chance to introduce yourself and make a lasting impression. So, take the time to tailor your cover letter to the specific job and company, and showcase your qualifications in the best possible light. Be confident and give it your best shot.</p>
+                        <h4 class="mb-md-4 mb-3"><b>Conclusion:</b></h4>
+                        <p class="mb-3">In summary, a well-written cover letter can be the key to landing an interview and getting your foot in the door at your dream company. By researching the company and the job, using a professional tone, highlighting your relevant skills and experiences, and formatting and proofreading your cover letter, you can create a cover letter that will make a great first impression and help you stand out from the competition.</p>
+                        <h5 class="mb-md-4 mb-3"><b>Ready to take your job application to the next level? Our AI generator crafts
+                            professionally tailored cover letters based on your unique job information and
+                            qualifications.</b></h5>
+                            <button class="button-style" style="margin-top: 20px;" onclick="location.href = '/demo';"><span
+                                aria-hidden="true">Try for FREE</span></button>
+                        <div class="social-share-blog mt-5 pb-4">
+                            <ul class="column3 social m-0 p-0">
+                                <li>
+                                    <p class="m-0 mr-4">Share this post :</p>
+                                </li>
+                                <li style="float: left;"><a href="https://www.facebook.com" target="_blank" class="facebook"><span class="fab fa-facebook-f"></span></a>
+                                </li>
+                                <li style="float: left; margin-left: 20px;"><a href="https://twitter.com/" target="_blank" class="twitter"><span class="fab fa-twitter"></span></a></li>
+                                <li style="float: left; margin-left: 20px;"><a href="https://instagram.com/" target="_blank" class="instagram"><span class="fab fa-instagram"></span></a>
+                                </li>
+                                <li style="float: left; margin-left: 20px;"><a href="https://www.linkedin.com/" target="_blank" class="linkedin"><span class="fab fa-linkedin-in"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="new-posts mt-5">
+                            <!--
+                            <a style="float: left;" class="prev-post pull-left" href="/what-is-a-cover-letter"><span class="fa fa-arrow-left"
+                                    aria-hidden="true"></span>
+                                Previous </a>
+                            -->
+                            <a style="float: right;" class="next-post pull-right" href="/what-is-a-cover-letter">Next <span class="fa fa-arrow-right"
+                                    aria-hidden="true"></span></a>
+                        </div>
+                        <!--
+                        <div class="comments mt-5">
+                            <h3 class="aside-title ">Recent comments(2)</h3>
+                            <div class="comments-grids">
+                                <div class="media-grid">
+                                    <div class="media">
+                                        <a class="comment-img" href="#url"><img src="assets/images/team1.jpg"
+                                                class="img-responsive" width="100px" alt="placeholder image"></a>
+                                        <div class="media-body comments-grid-right">
+                                            <h5>Jack Harry</h5>
+                                            <ul class="p-0 comment">
+                                                <li class="">Jan 28th, 2021 at 11:00 am</li>
+                                                <li>
+                                                    <a href="#comment"><i class="fa fa-reply mr-1"
+                                                            aria-hidden="true"></i>Reply</a>
+                                                </li>
+                                            </ul>
+                                            <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec purus
+                                                quis
+                                                tempor. Phasellus ipsum bibendum eu nec purus quis tempor dolor set.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-grid">
+                                    <div class="media">
+                                        <a class="comment-img" href="#url"><img src="assets/images/team2.jpg"
+                                                class="img-responsive" width="100px" alt="placeholder image"></a>
+                                        <div class="media-body comments-grid-right">
+                                            <h5>Charlie</h5>
+                                            <ul class="p-0 comment">
+                                                <li class="">Jan 28th, 2021 at 05:45 pm </li>
+                                                <li>
+                                                    <a href="#comment"><i class="fa fa-reply mr-1"
+                                                            aria-hidden="true"></i>Reply</a>
+                                                </li>
+                                            </ul>
+                                            <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec purus
+                                                quis
+                                                tempor. Phasellus eu nec purus quis tempor.
+                                            </p>
+                                            <div class="media mt-5 mb-0 px-0 pb-0 media-sub">
+                                                <a class="comment-img" href="#url"><img src="assets/images/team3.jpg"
+                                                        class="img-responsive" width="100px"
+                                                        alt="placeholder image"></a>
+                                                <div class="media-body comments-grid-right">
+                                                    <h5>Jack Harry</h5>
+                                                    <ul class="p-0 comment">
+                                                        <li class="">Jan 28th, 2021 at 11:00 am</li>
+                                                        <li>
+                                                            <a href="#comment"><i class="fa fa-reply mr-1"
+                                                                    aria-hidden="true"></i>Reply</a>
+                                                        </li>
+                                                    </ul>
+                                                    <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec
+                                                        purus quis
+                                                        tempor. dolor set.</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="leave-comment-form" id="comment">
+                            <h3 class="aside-title">Leave a reply</h3>
+                            <form action="#" method="post">
+                                <div class="input-grids">
+                                    <div class="form-group">
+                                        <input type="text" name="Name" class="form-control" placeholder="Your Name"
+                                            required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="Email" class="form-control" placeholder="Email"
+                                            required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="Comment" class="form-control" placeholder="Your Comment"
+                                            required=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="text-right mt-4">
+                                    <button class="btn button-style">Post Comment</a>
+                                </div>
+                            </form>
+                        </div>
+                        -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -176,7 +307,7 @@
                                     
                                     <li><a href="/Privacy"><i class="fa fa-angle-right" aria-hidden="true"></i>Privacy
                                             Policy</a></li>
-                                    <li><a href="#terms"><i class="fa fa-angle-right" aria-hidden="true"></i>Terms &
+                                    <li><a href="/Terms"><i class="fa fa-angle-right" aria-hidden="true"></i>Terms &
                                             conditions</a></li>
                                 </ul>
                             </div>
@@ -185,7 +316,7 @@
                     <div class="col-lg-4 col-md-7 column mt-lg-0 mt-4">
                         <h3>Newsletter </h3>
                         <div class="end-column">
-                            <form  class="subscribe" >
+                            <form class="subscribe">
                                 <input type="email" name="email" placeholder="Email Address" required="">
                                 <button class="button-style"><span class="fa fa-paper-plane"
                                         aria-hidden="true"></span></button>

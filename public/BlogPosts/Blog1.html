@@ -54,19 +54,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="/Package">Create</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="/blogs">Blogs</a>
                         </li>
                         <!-- search button -->
                         <div class="search-right ml-lg-3">
                             <div class="search-right ml-lg-3">
-                                <form id="promo-form" class="search-box position-relative">
-                                    <input type="text" placeholder="Promo Code" id="searchTerm" name="searchTerm" required="required"
+                                <form id="search-form" class="search-box position-relative">
+                                    <input id="search-input" type="search" placeholder="Enter Keyword" name="search" required="required"
                                         autofocus="" class="search-popup">
-                                    <button type="submit" value="Submit" class="btn search-btn"><i class="fa fa-search"
+                                    <button type="submit" class="btn search-btn"><i class="fa fa-search"
                                             aria-hidden="true"></i></button>
                                 </form>
                             </div>
@@ -99,10 +99,10 @@
     <div class="inner-banner">
         <section class="w3l-breadcrumb">
             <div class="container">
-                <h4 class="inner-text-title font-weight-bold mb-2">Free Demo</h4>
+                <h4 class="inner-text-title font-weight-bold mb-2">Best Practices</h4>
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="/Package">Packages</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Free Demo</li>
+                    <li><a href="/blogs">Blogs</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span>Best Practices</li>
                 </ul>
             </div>
         </section>
@@ -110,39 +110,172 @@
     <!-- //inner banner -->
 
     <!-- about2 section -->
-    <section class="w3l-about2 py-5">
-        <div class="container py-md-5 py-4">
-            <div class="row">
-                <div class="content-left col-lg-6">
-                    <h3 class="title-big" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Getting Started</h3>
-                    <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Complete this form or select the <span><b><a href="/Package" style="color: blue;">Basic</a></b></span> package and upload your resume so that we can generate a cover letter for you.</p>
-                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Job Title</b></h6>
-                    <input class="manInput" placeholder="Junior Software Developer" id="job">
-                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Skills</b></h6>
-                    <input class="manInput" placeholder="SQL, Node.js" id="skills">
-                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Education</b></h6>
-                    <input class="manInput" placeholder="Degree in Computer Science" id="education">
-                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Experience</b></h6>
-                    <textarea id="experience" class="manInputBigger" placeholder="Intern at Microsoft for 6 months, Junior developer at ai-cover for 3 months"></textarea>
-                    <button class="button-style" id="demoBtn" style="margin-top: 20px;"><span
-                        aria-hidden="true">Generate</span></button>
-                </div>
-                <div class="content-right col-lg-6 pl-lg-4 mt-lg-0 mt-md-5 mt-5 align-self">
-                    <div class="row content4-right-grids mb-lg-5 mb-5">
-                        <!--<img src="./assets/images/Cover Letter.png" style="max-width: 700px;">-->
-                        <div class="coverLetterBack" id="resultText">
-                            <h6 style="text-align: center;" id="outputHeading"><b>Example Output</b></h6>
-                            <p style="font-size: 15px;" id="noCopy">Dear Hiring Manager,</p>
-                            <p style="font-size: 15px;" id="noCopy">I am writing to express my interest in the Junior Software Developer position at your company. As a computer science graduate and a Microsoft Certified Azure AI Engineer Associate, I have a strong foundation in software development and am excited to continue growing my skills and experience.</p>
-                            <p style="font-size: 15px;" id="noCopy">During my time as a Software Engineering Intern at Microsoft and a Junior Developer at ai-cover, I gained valuable experience working with a variety of technologies, including .NET 6, Azure, AWS, Node.js, Redis, MongoDB, MySQL, and Docker. I have a proven track record of delivering high-quality solutions and collaborating effectively with teams.</p>
-                            <p style="font-size: 15px;" id="noCopy">I am confident in my ability to contribute to your team as a Junior Software Developer and am eager to use my skills and experience to help your company succeed. I am committed to continuous learning and staying up-to-date with the latest technologies and best practices.</p>
-                            <p style="font-size: 15px;" id="noCopy">Thank you for considering my application. I would welcome the opportunity to further discuss how I can contribute to your team as a Junior Software Developer.</p>
-                            <p style="font-size: 15px;" id="noCopy">Sincerely,<br>[Your Name]</p>
+    <section class="text-11 py-5">
+        <div class="text11 py-md-5 py-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 text11-content m-auto">
+                        <br>
+                        <div id="blogPost">
+                            <div style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; margin-top: 10px; margin-left: 10px;">
+                                <h4><b>Best practices to follow when writing your Cover Letter.</b></h4>
+                                <br>
+                                <h6><span class="fa fa-user mr-1 icon-color"></span>Charles Loxton Jan 14, 2023.</h6>
+                                <a href="#post" class="post"> Software Engineer</a>
+                            </div>
+                        
+                            <img src="assets/images/practices.png" class="img-fluid img-responsive" alt="" />
                         </div>
+                        <br>
+                        <h5 class="quote"><b><em>
+                            "A cover letter is your opportunity to show how you're the perfect fit for the company."
+                            </em>
+                            </b>
+                            <footer class="blockquote-footer mt-3"> Glassdoor</footer>
+                        </h5>
+                        <p class="mt-4 mb-3">A cover letter is an essential part of any job application. It is your chance to make a first impression on a potential employer and to showcase your qualifications and enthusiasm for the position. Creating a well-written cover letter can be the difference between getting an interview or having your application overlooked. Here are some best practices for creating a cover letter that will help you stand out from the competition.</p>
+                        <h4 class="mb-md-4 mb-3"><b>1. Tailor your cover letter to the specific job and company.</b></h4>
+                        <p class="mb-3">One of the most important things to remember when writing a cover letter is to tailor it to the specific job and company you are applying to. This means doing your research on the company and the position to understand what they are looking for in a candidate. Use this information to highlight how your skills and experience align with the company's needs.</p>
+                
+                        <h4 class="mb-md-4 mb-3"><b>2. Showcase your qualifications and achievements.</b></h4>
+                        <div class="sing-post-thumb mb-lg-5 mb-4 row pt-3">
+                            <div class="col-md-6">
+                                <a href="#url"><img src="assets/images/prepare.png" class="img-fluid img-responsive"
+                                        alt=""></a>
+                            </div>
+                            <div class="col-md-6 mt-md-0 mt-3 align-self">
+                                <p class="">Your cover letter should showcase your qualifications and achievements. Use specific examples of how you have excelled in previous roles, and how your skills and experience make you a great fit for the position you are applying for.</p>
+                                <p class="mt-3">Use keywords related to the job to highlight your qualifications and make your cover letter more searchable by potential employers.</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="mb-md-4 mb-3"><b>3. Use a professional tone and format.</b></h4>
+                        <p class="mb-4">Your cover letter should be written in a professional tone and format. This means using a formal business letter format and avoiding overly casual language. Use proper grammar and spelling, and make sure your cover letter is well-organized and easy to read.</p>
+                        
+                        <h4 class="mb-md-4 mb-3"><b>4. Highlight your interest and enthusiasm for the position.</b></h4>
+                        <p class="mb-3">One of the most important things to convey in your cover letter is your interest and enthusiasm for the position. Explain why you are excited about the opportunity to work for the company and how you are looking forward to contributing to their success.</p>
+                        <h4 class="mb-md-4 mb-3"><b>5. Keep it concise and to the point.</b></h4>
+                        <p class="mb-3">Your cover letter should be concise and to the point. Avoid including irrelevant information or rambling on about your qualifications. Stick to the most important information, and make sure your cover letter is no longer than one page.</p>
+                        <h4 class="mb-md-4 mb-3"><b>6. Proofread and edit your cover letter.</b></h4>
+                        <p class="mb-3">Make sure you proofread and edit your cover letter before sending it. Double-check for spelling and grammatical errors and make sure that your cover letter is clear and easy to read.</p>
+                        <h4 class="mb-md-4 mb-3"><b>Conclusion:</b></h4>
+                        <p class="mb-3">In conclusion, a well-written cover letter is an essential part of any job application. By following these best practices, you can ensure that your cover letter makes a great first impression and helps you stand out from the competition. Remember to tailor your cover letter to the specific job and company, use a professional tone and format, showcase your qualifications and achievements, highlight your interest and enthusiasm for the position, keep it concise and to the point, and proofread and edit your cover letter before sending it. With these tips in mind, you'll be well on your way to creating a winning cover letter.</p>
+                        <h5 class="mb-md-4 mb-3"><b>Ready to take your job application to the next level? Our AI generator crafts
+                            professionally tailored cover letters based on your unique job information and
+                            qualifications.</b></h5>
+                            <button class="button-style" style="margin-top: 20px;" onclick="location.href = '/demo';"><span
+                                aria-hidden="true">Try for FREE</span></button>
+                        <div class="social-share-blog mt-5 pb-4">
+                            <ul class="column3 social m-0 p-0">
+                                <li>
+                                    <p class="m-0 mr-4">Share this post :</p>
+                                </li>
+                                <li style="float: left;"><a href="https://www.facebook.com" target="_blank" class="facebook"><span class="fab fa-facebook-f"></span></a>
+                                </li>
+                                <li style="float: left; margin-left: 20px;"><a href="https://twitter.com/" target="_blank" class="twitter"><span class="fab fa-twitter"></span></a></li>
+                                <li style="float: left; margin-left: 20px;"><a href="https://instagram.com/" target="_blank" class="instagram"><span class="fab fa-instagram"></span></a>
+                                </li>
+                                <li style="float: left; margin-left: 20px;"><a href="https://www.linkedin.com/" target="_blank" class="linkedin"><span class="fab fa-linkedin-in"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="new-posts mt-5">
+                            <a style="float: left;" class="prev-post pull-left" href="/why-use-ai-to-create-cover-letters"><span class="fa fa-arrow-left"
+                                aria-hidden="true"></span>
+                            Previous </a>
+                            <a style="float: right;" class="next-post pull-right" href="/preparing-for-a-job-interview">Next <span class="fa fa-arrow-right"
+                                    aria-hidden="true"></span></a>
+                        </div>
+                        <!--
+                        <div class="comments mt-5">
+                            <h3 class="aside-title ">Recent comments(2)</h3>
+                            <div class="comments-grids">
+                                <div class="media-grid">
+                                    <div class="media">
+                                        <a class="comment-img" href="#url"><img src="assets/images/team1.jpg"
+                                                class="img-responsive" width="100px" alt="placeholder image"></a>
+                                        <div class="media-body comments-grid-right">
+                                            <h5>Jack Harry</h5>
+                                            <ul class="p-0 comment">
+                                                <li class="">Jan 28th, 2021 at 11:00 am</li>
+                                                <li>
+                                                    <a href="#comment"><i class="fa fa-reply mr-1"
+                                                            aria-hidden="true"></i>Reply</a>
+                                                </li>
+                                            </ul>
+                                            <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec purus
+                                                quis
+                                                tempor. Phasellus ipsum bibendum eu nec purus quis tempor dolor set.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-grid">
+                                    <div class="media">
+                                        <a class="comment-img" href="#url"><img src="assets/images/team2.jpg"
+                                                class="img-responsive" width="100px" alt="placeholder image"></a>
+                                        <div class="media-body comments-grid-right">
+                                            <h5>Charlie</h5>
+                                            <ul class="p-0 comment">
+                                                <li class="">Jan 28th, 2021 at 05:45 pm </li>
+                                                <li>
+                                                    <a href="#comment"><i class="fa fa-reply mr-1"
+                                                            aria-hidden="true"></i>Reply</a>
+                                                </li>
+                                            </ul>
+                                            <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec purus
+                                                quis
+                                                tempor. Phasellus eu nec purus quis tempor.
+                                            </p>
+                                            <div class="media mt-5 mb-0 px-0 pb-0 media-sub">
+                                                <a class="comment-img" href="#url"><img src="assets/images/team3.jpg"
+                                                        class="img-responsive" width="100px"
+                                                        alt="placeholder image"></a>
+                                                <div class="media-body comments-grid-right">
+                                                    <h5>Jack Harry</h5>
+                                                    <ul class="p-0 comment">
+                                                        <li class="">Jan 28th, 2021 at 11:00 am</li>
+                                                        <li>
+                                                            <a href="#comment"><i class="fa fa-reply mr-1"
+                                                                    aria-hidden="true"></i>Reply</a>
+                                                        </li>
+                                                    </ul>
+                                                    <p>Mattis ut hendrerit non, facilisis eget mauris. Sed ultricies nec
+                                                        purus quis
+                                                        tempor. dolor set.</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="leave-comment-form" id="comment">
+                            <h3 class="aside-title">Leave a reply</h3>
+                            <form action="#" method="post">
+                                <div class="input-grids">
+                                    <div class="form-group">
+                                        <input type="text" name="Name" class="form-control" placeholder="Your Name"
+                                            required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" name="Email" class="form-control" placeholder="Email"
+                                            required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea name="Comment" class="form-control" placeholder="Your Comment"
+                                            required=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="text-right mt-4">
+                                    <button class="btn button-style">Post Comment</a>
+                                </div>
+                            </form>
+                        </div>
+                        -->
                     </div>
                 </div>
-            </div>
-            <div>
             </div>
         </div>
     </section>
@@ -217,9 +350,8 @@
     <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fas fa-level-up-alt" aria-hidden="true"></span>
     </button>
-    <script src="./scripts/demoScript.js"></script>
-    <script src="./scripts/SelectedPackage.js"></script>
-    <script src="./scripts/promo.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/findWord.js"></script>
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {

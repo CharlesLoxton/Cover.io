@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
     <!-- Template CSS Style link -->
     <link rel="stylesheet" href="/assets/css/style-starter.css">
+    <link rel="stylesheet" href="/assets/css/myStyle.css">
 </head>
 
 <body>
@@ -51,10 +52,22 @@
                             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Package">Create Cover Letter</a>
+                            <a class="nav-link" href="/Package">Create</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blogs">Blogs</a>
                         </li>
                         <!-- search button -->
-                        
+                        <div class="search-right ml-lg-3">
+                            <div class="search-right ml-lg-3">
+                                <form id="promo-form" class="search-box position-relative">
+                                    <input type="text" placeholder="Promo Code" id="searchTerm" name="searchTerm" required="required"
+                                        autofocus="" class="search-popup">
+                                    <button type="submit" value="Submit" class="btn search-btn"><i class="fa fa-search"
+                                            aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+                        </div>
                         <!-- //search button -->
                     </ul>
                 </div>
@@ -90,9 +103,11 @@
                     <div class="col-md-6 pt-md-0 pt-4">
                         <h3 class="mb-lg-4 mb-3 title">I am a <span class="typed-text"></span><span
                                 class="cursor">&nbsp</span></h3>
-                        <p>We use AI technology to generate unique and professional cover letters. Just upload your Resume and we will do the rest.</p>
+                        <p>Make a lasting impression with a job application that stands out from the crowd. We use AI
+                            Technology to generate unique, professionally tailored cover letters.
+                            Just upload your resume and we’ll do the rest.</p>
                         <div class="mt-md-5 mt-4 mb-lg-0 mb-4">
-                            <a class="btn button-style" href="/Package">Get Started</a>
+                            <a class="btn button-style" href="/Package">Try for FREE</a>
                         </div>
                     </div>
                     <div class="col-md-6 mt-md-0 mt-4">
@@ -112,12 +127,19 @@
                     <a href="#image"><img src="assets/images/home-ab.png" class="img-fluid" alt="content-photo"></a>
                 </div>
                 <div class="col-md-6 content-left mb-md-0 mb-5 pl-lg-5 order-md-last order-first">
+                    <h3 class="mb-lg-4 mb-3 title" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">About us</h3>
                     <a class="navbar-brand" href="/" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
                         <i class="fab  icon-color mr-1"><img src="./assets/images/AIlogo.png" style="height: 27px;"></i><b>ai-cover</b><span></span>
                     </a>
-                    <p>We are a company that uses artificial intelligence to generate professional cover letters for job seekers. The process is easy: users simply upload their resumes to our platform.</p>
-                    <p class="mt-3">AI algorithms then analyze the resume and job description to identify the most relevant skills and experiences, and use this information to craft a personalized cover letter that highlights the user's qualifications and showcases their fit for the role.</p>
-                    <a class="btn button-style mt-lg-5 mt-4" href="/Package">Try it out</a>
+                    <p>We are a cover letter writing service with a twist. We use artificial intelligence to generate
+                        professional cover letters for job seekers. The process is easy: upload your resume to our
+                        platform and let our cover letter generator do the rest.</p>
+                    <br>
+                    <h5 class="mb-lg-4 mb-3 title" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif"><b>How does it work?</b></h5>
+                    <p class="mt-3">Our AI algorithms analyze your provided resume and job description to identify the most
+                        relevant skills and experiences, and use this information to generate a personalised cover
+                        letter that highlights your qualifications and showcases your aptness for the role.</p>
+                    <a class="btn button-style mt-lg-5 mt-4" href="/Package">Try for FREE</a>
                 </div>
             </div>
         </div>
@@ -133,7 +155,7 @@
                                 <span class="fas fa-business-time icon-color" aria-hidden="true"></span>
                             </div>
                             <h5><a href="Terms.html">1. Upload your Resume</a></h5>
-                            <p>Simply upload your resume.</p>
+                            <p>Enter your details into our form, or upload your Resume.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 mt-md-0 mt-2">
@@ -141,8 +163,8 @@
                             <div class="feature-images">
                                 <span class="fas fa-laptop-code icon-color" aria-hidden="true"></span>
                             </div>
-                            <h5><a href="Terms.html">2. Generate Cover Letter</a></h5>
-                            <p>Wait for it to finish processing.</p>
+                            <h5><a href="Terms.html">2. Generate Cover Letter for Free</a></h5>
+                            <p>Wait for our generator to work its magic.</p>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 mt-lg-0 mt-2">
@@ -150,8 +172,8 @@
                             <div class="feature-images">
                                 <span class="fas fa-clipboard-check icon-color" aria-hidden="true"></span>
                             </div>
-                            <h5><a href="Terms.html">3. Result</a></h5>
-                            <p>Receive your own personalized cover letter and make changes as you wish.</p>
+                            <h5><a href="Terms.html">3. Download your Result</a></h5>
+                            <p>Save your AI generated cover letter to your local Device.</p>
                         </div>
                     </div>
                 </div>
@@ -163,122 +185,178 @@
     <section class="w3l-clients py-5" id="testimonials">
         <div class="container py-md-5 py-4">
             <div class="text-center mb-sm-5 mb-4">
-                <label class="sub-title mb-2">Testimonials</label>
-                <h3 class="title-big">What Clients Say</h3>
+                <label class="sub-title mb-2">Articles</label>
+                <h3 class="title-big">Blog Posts</h3>
             </div>
             <div id="owl-demo2" class="owl-carousel owl-theme pb-5">
-                <div class="item">
+                <div class="item" style="padding: 20px;">
                     <div class="testimonial-content">
-                        <div class="testimonial">
-                            <blockquote>
-                                <q>Worked extremely well</q>
-                            </blockquote>
-                            <p>It worked extremely well. Much better than expected. Just had to modify it a bit but saved me a lot of time.</p>
-                        </div>
-                        <div class="bottom-info mt-4">
-                            <a class="comment-img" href="#url"><img src="assets/images/CharlesProfile.png"
-                                    class="img-responsive" alt="placeholder image"></a>
-                            <div class="people-info align-self">
-                                <h3>Charles Loxton</h3>
-                                <p class="identity">Software Engineer</p>
-                            </div>
+                        <div class="serve-info" id="blogPost">
+                            <a href="/how-to-write-a-cover-letter">
+                                <figure>
+                                    <img class="img-responsive" src="assets/images/transparent.png" alt="blog-image">
+                                </figure>
+                            </a>
+                            <h4> <a href="/how-to-write-a-cover-letter" class="vv-link"><b>How to write a Cover Letter.</b></a>
+                            </h4>
+                            <br>
+                            <ul class="admin-list">
+                                <li><a href="/how-to-write-a-cover-letter"><span class="fa fa-user-circle"
+                                            aria-hidden="true"></span>
+                                        Charles Loxton</a></li>
+                                <!--
+                                <li><a href="blog-single.html"><span class="fa fa-heart" aria-hidden="true"></span>9
+                                        Likes</a></li>
+                                <li><a href="blog-single.html"><span class="fa fa-comments"
+                                            aria-hidden="true"></span>9 Comments</a>
+                                </li>
+                                -->
+                            </ul>
+                            <p>Creating a cover letter can seem like a daunting task, but it doesn't have to be. By following these tips, you can create a cover letter that will help you stand out from the competition and land your dream job.</p>
                         </div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" style="padding: 20px;">
                     <div class="testimonial-content">
-                        <div class="testimonial">
-                            <blockquote>
-                                <q>Saved me a lot of time</q>
-                            </blockquote>
-                            <p>This saved me a lot of time. I could focus more on perfecting my resume than having the perfect cover letter.</p>
-                        </div>
-                        <div class="bottom-info mt-4">
-                            <a class="comment-img" href="#url"><img src="assets/images/testi2.jpg"
-                                    class="img-responsive" alt="placeholder image"></a>
-                            <div class="people-info align-self">
-                                <h3>Coenraad Crause</h3>
-                                <p class="identity">Graphic Designer</p>
-                            </div>
+                        <div class="serve-info" id="blogPost">
+                            <a href="/what-is-a-cover-letter">
+                                <figure>
+                                    <img class="img-responsive" src="assets/images/letters.png" alt="blog-image">
+                                </figure>
+                            </a>
+                            <h4> <a href="/what-is-a-cover-letter" class="vv-link"><b>What is a Cover Letter?</b></a>
+                            </h4>
+                            <br>
+                            <br>
+                            <ul class="admin-list">
+                                <li><a href="/what-is-a-cover-letter"><span class="fa fa-user-circle"
+                                            aria-hidden="true"></span>
+                                        Charles Loxton</a></li>
+                                <!--
+                                <li><a href="blog-single.html"><span class="fa fa-heart" aria-hidden="true"></span>9
+                                        Likes</a></li>
+                                <li><a href="blog-single.html"><span class="fa fa-comments"
+                                            aria-hidden="true"></span>8 Comments</a>
+                                </li>
+                                -->
+                            </ul>
+                            <p>A cover letter is a document that accompanies your resume or CV when applying for a job. In this blog post, we will explore what a cover letter is, why it is important, and how to write a great one.</p>
+                            <br>
                         </div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" style="padding: 20px;">
                     <div class="testimonial-content">
-                        <div class="testimonial">
-                            <blockquote>
-                                <q>Unique and professional</q>
-                            </blockquote>
-                            <p>Unique and professional was promised, and it was delivered. I am quite happy with the result.</p>
-                        </div>
-                        <div class="bottom-info mt-4">
-                            <a class="comment-img" href="#url"><img src="assets/images/franco.jpg"
-                                    class="img-responsive" alt="placeholder image"></a>
-                            <div class="people-info align-self">
-                                <h3>Franco Snyman</h3>
-                                <p class="identity">Sales Manager</p>
-                            </div>
+                        <div class="serve-info" id="blogPost">
+                            <a href="/why-use-ai-to-create-cover-letters">
+                                <figure>
+                                    <img class="img-responsive" src="assets/images/AIwriting.png" alt="blog-image">
+                                </figure>
+                            </a>
+                            <h4> <a href="/why-use-ai-to-create-cover-letters" class="vv-link"><b>Why use AI to create your Cover Letter?</b></a>
+                            </h4>
+                            <br>
+                            <ul class="admin-list">
+                                <li><a href="/why-use-ai-to-create-cover-letters"><span class="fa fa-user-circle"
+                                            aria-hidden="true"></span>
+                                        Charles Loxton</a></li>
+                                <!--
+                                <li><a href="/why-use-ai-to-create-cover-letters"><span class="fa fa-heart" aria-hidden="true"></span>6
+                                        Likes</a></li>
+                                <li><a href="/why-use-ai-to-create-cover-letters"><span class="fa fa-comments"
+                                            aria-hidden="true"></span>9 Comments</a>
+                                </li>
+                                -->
+                            </ul>
+                            <p>The job application process can be time-consuming and tedious, especially when it comes to writing a cover letter. In this blog post, we will explore how AI can generate personalized cover letters, and the benefits it offers to job seekers.</p>
                         </div>
                     </div>
                 </div>
-                <!--
-                <div class="item">
+                
+                <div class="item" style="padding: 20px;">
                     <div class="testimonial-content">
-                        <div class="testimonial">
-                            <blockquote>
-                                <q>Better than expected.</q>
-                            </blockquote>
-                            <p>The results were better than expected. You would not expect AI to be able to create something so human like</p>
-                        </div>
-                        <div class="bottom-info mt-4">
-                            <a class="comment-img" href="#url"><img src="assets/images/team2.jpg"
-                                    class="img-responsive" alt="placeholder image"></a>
-                            <div class="people-info align-self">
-                                <h3>Julia sakura</h3>
-                                <p class="identity">Psychologist</p>
-                            </div>
+                        <div class="serve-info" id="blogPost">
+                            <a href="/best-practices">
+                                <figure>
+                                    <img class="img-responsive" src="assets/images/practices.png" alt="blog-image">
+                                </figure>
+                            </a>
+                            <h4> <a href="/best-practices" class="vv-link"><b>Best Practices to follow when creating your Cover Letter.</b></a>
+                            </h4>
+                            <ul class="admin-list">
+                                <li><a href="/best-practices"><span class="fa fa-user-circle"
+                                            aria-hidden="true"></span>
+                                        Charles Loxton</a></li>
+                                <!--
+                                <li><a href="blog-single.html"><span class="fa fa-heart" aria-hidden="true"></span>9
+                                        Likes</a></li>
+                                <li><a href="blog-single.html"><span class="fa fa-comments"
+                                            aria-hidden="true"></span>9 Comments</a>
+                                </li>
+                                -->
+                            </ul>
+                            <p>Creating a well-written cover letter can be the difference between getting an interview or having your application overlooked. Here are some best practices for creating a cover letter that will help you stand out from the competition.</p>
                         </div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" style="padding: 20px;">
                     <div class="testimonial-content">
-                        <div class="testimonial">
-                            <blockquote>
-                                <q>This blew me away</q>
-                            </blockquote>
-                            <p>I was blown away by the results. I did not expect it to be able to give me such an accurate result.</p>
-                        </div>
-                        <div class="bottom-info mt-4">
-                            <a class="comment-img" href="#url"><img src="assets/images/team3.jpg"
-                                    class="img-responsive" alt="placeholder image"></a>
-                            <div class="people-info align-self">
-                                <h3>John wilson</h3>
-                                <p class="identity">Sales Representative</p>
-                            </div>
+                        <div class="serve-info" id="blogPost">
+                            <a href="/preparing-for-a-job-interview">
+                                <figure>
+                                    <img class="img-responsive" src="assets/images/prepare.png" alt="blog-image">
+                                </figure>
+                            </a>
+                            <h4> <a href="/preparing-for-a-job-interview" class="vv-link"><b>Preparing for a Job Interview in 5 Easy Steps.</b></a>
+                            </h4>
+                            <ul class="admin-list">
+                                <li><a href="/preparing-for-a-job-interview"><span class="fa fa-user-circle"
+                                            aria-hidden="true"></span>
+                                        Charles Loxton</a></li>
+                                <!--
+                                <li><a href="/preparing-for-a-job-interview"><span class="fa fa-heart" aria-hidden="true"></span>9
+                                        Likes</a></li>
+                                <li><a href="/preparing-for-a-job-interview"><span class="fa fa-comments"
+                                            aria-hidden="true"></span>8 Comments</a>
+                                </li>
+                                -->
+                            </ul>
+                            <p>The job interview process can be intimidating, but with
+                                preparation and practice, you can make sure your next
+                                interview lands you that job! Here are five steps to help you
+                                prepare for a successful job interview.</p>
                         </div>
                     </div>
                 </div>
-                <div class="item">
+                <div class="item" style="padding: 20px;">
                     <div class="testimonial-content">
-                        <div class="testimonial">
-                            <blockquote>
-                                <q>Landed an internship.</q>
-                            </blockquote>
-                            <p>This helped me tons to land my first internship. Saved me time to do more interview prep. Thank You!</p>
-                        </div>
-                        <div class="bottom-info mt-4">
-                            <a class="comment-img" href="#url"><img src="assets/images/team1.jpg"
-                                    class="img-responsive" alt="placeholder image"></a>
-                            <div class="people-info align-self">
-                                <h3>Thsepo Mkanzi</h3>
-                                <p class="identity">Software Engineer Intern</p>
-                            </div>
+                        <div class="serve-info" id="blogPost">
+                            <a href="/why-customizing-your-cover-letter-is-super-important">
+                                <figure>
+                                    <img class="img-responsive" src="assets/images/customize.png" alt="blog-image">
+                                </figure>
+                            </a>
+                            <h4> <a href="/why-customizing-your-cover-letter-is-super-important" class="vv-link"><b>Why Customizing Your Cover Letter is Super Important.</b></a>
+                            </h4>
+                            <ul class="admin-list">
+                                <li><a href="/why-customizing-your-cover-letter-is-super-important"><span class="fa fa-user-circle"
+                                            aria-hidden="true"></span>
+                                        Charles Loxton</a></li>
+                                <!--
+                                <li><a href="/why-customizing-your-cover-letter-is-super-important"><span class="fa fa-heart" aria-hidden="true"></span>6
+                                        Likes</a></li>
+                                <li><a href="/why-customizing-your-cover-letter-is-super-important"><span class="fa fa-comments"
+                                            aria-hidden="true"></span>9 Comments</a>
+                                </li>
+                                -->
+                            </ul>
+                            <p>A cover letter is the first impression that a potential employer will have of you, and it is important to make sure that it stands out. In this blog post, we will explore why customizing your cover letter is so important and how to go about doing it.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        -->
+        
     </section>
 
     <!-- footer -->
@@ -351,7 +429,8 @@
     <button onclick="topFunction()" id="movetop" title="Go to top">
         <span class="fas fa-level-up-alt" aria-hidden="true"></span>
     </button>
-    <script src="script.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/promo.js"></script>
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {

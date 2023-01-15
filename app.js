@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
-import express from 'express';
+import express, { query } from 'express';
 import multer from "multer";
 import { callOpenAI } from './functions/callOpenAI.js';
 import deleteFile from './functions/deleteFile.js';
@@ -78,8 +78,10 @@ app.get('/Create', (req, res) => {
               }
             }
           });
+    } else if(req.query?.code == process.env.PROMO_CODE) {
+        res.sendFile(path.join(process.cwd(), './public/Create.html'));
     } else {
-        res.sendFile(path.join(process.cwd(), './public/index.html'));
+      res.sendFile(path.join(process.cwd(), './public/index.html'));
     }
 });
 
@@ -97,6 +99,45 @@ app.get('/Package', (req, res) => {
 
 app.get('/demo', (req, res) => {
     res.sendFile(path.join(process.cwd(), './public/FreeDemo.html'));
+});
+
+app.get('/blogs', (req, res) => {
+  res.sendFile(path.join(process.cwd(), './public/Blogs.html'));
+});
+
+app.get('/best-practices', (req, res) => {
+  res.sendFile(path.join(process.cwd(), './public/BlogPosts/Blog1.html'));
+});
+
+app.get('/what-is-a-cover-letter', (req, res) => {
+  res.sendFile(path.join(process.cwd(), './public/BlogPosts/Blog2.html'));
+});
+
+app.get('/why-use-ai-to-create-cover-letters', (req, res) => {
+  res.sendFile(path.join(process.cwd(), './public/BlogPosts/Blog3.html'));
+});
+
+app.get('/how-to-write-a-cover-letter', (req, res) => {
+  res.sendFile(path.join(process.cwd(), './public/BlogPosts/Blog4.html'));
+});
+
+app.get('/preparing-for-a-job-interview', (req, res) => {
+  res.sendFile(path.join(process.cwd(), './public/BlogPosts/Blog5.html'));
+});
+
+app.get('/why-customizing-your-cover-letter-is-super-important', (req, res) => {
+  res.sendFile(path.join(process.cwd(), './public/BlogPosts/Blog6.html'));
+});
+
+app.get('/promo', (req, res) => {
+
+  console.log(req.query.code);
+
+  if(req.query.code == process.env.PROMO_CODE){
+    res.send({status: 200});
+  } else {
+    res.send({status: 400});
+  }
 });
 
 app.get('/sitemap.xml', function(req, res) {
@@ -257,7 +298,6 @@ app.post(`/freeupload`, async (req, res) => {
 
   await callFreeOpenAI(job, skills, education, experience)
   .then((result) => {
-    //createPDF(result, res);
     res.send({text: result.split(/\n\n|  /).filter(item => item !== ''), error: false});
   })
   .catch((err) => {
