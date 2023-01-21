@@ -2,8 +2,13 @@ const demoBtn = document.getElementById("demoBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const resultText = document.getElementById("resultText");
 const heading = document.getElementById("outputHeading");
+const userName = document.getElementById("userName");
+const headingName = document.getElementById("headingName");
+const jobInput = document.getElementById("job");
+const jobHeading = document.getElementById("jobHeading")
 let loading  = false;
 let letter = [];
+let prevPic = "";
 
 let currentYear = new Date().getFullYear();
 document.getElementById("date").innerHTML += `${currentYear} ai-cover | All rights reserved`;
@@ -14,6 +19,7 @@ demoBtn.addEventListener("click", () => {
 
     letter = "";
 
+    const name = document.getElementById("userName").value;
     const job = document.getElementById("job").value;
     const skills = document.getElementById("skills").value;
     const education = document.getElementById("education").value;
@@ -30,6 +36,7 @@ demoBtn.addEventListener("click", () => {
     loading = true;
 
     let params = {
+      name,
       job,
       skills,
       education,
@@ -86,10 +93,15 @@ demoBtn.addEventListener("click", () => {
 });
 
 function payDemo() {
+  const name = document.getElementById("userName").value;
+  const job = document.getElementById("job").value;
+
   fetch('/PayDemo', {
     method: 'POST',
     body: JSON.stringify({
-      text: letter
+      text: letter,
+      name,
+      job
     }),
     headers: {
       'Content-Type': 'application/json'
@@ -121,3 +133,46 @@ function writeLetter(node, text) {
 function deleteNodes() {
   resultText.innerHTML = "";
 }
+
+document.querySelector("#image-button").addEventListener("click", function() {
+  document.querySelector("#file-input").click();
+});
+
+document.querySelector("#file-input").addEventListener("change", function() {
+  let file = document.querySelector("#file-input").files[0];
+  let reader = new FileReader();
+
+  reader.onloadend = function() {
+    prevPic = reader.result;
+    document.querySelector("#button-image").src = reader.result;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    if(prevPic != ""){
+      document.querySelector("#button-image").src = prevPic;
+    } else{
+      document.querySelector("#button-image").src = "./assets/images/team1.jpg";
+    }
+    
+  }
+});
+
+userName.addEventListener("input", function() {
+
+  if(userName.value === ""){
+    headingName.innerHTML = "John Doe";
+  } else {
+    headingName.innerHTML = userName.value;
+  }
+});
+
+jobInput.addEventListener("input", function() {
+
+  if(jobInput.value === ""){
+    jobHeading.innerHTML = "Software Developer";
+  } else {
+    jobHeading.innerHTML = jobInput.value;
+  }
+});

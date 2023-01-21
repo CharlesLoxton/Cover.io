@@ -124,6 +124,37 @@
     padding: 20px;
   }
 
+  .profilepic {
+    max-width: 100%;
+    border-radius: 50%;
+    flex: 1;
+  }
+
+  .profileButton {
+    max-width: 20%;
+    border-radius: 50%;
+    border: 0px;
+    padding: 0px;
+  }
+
+  .img-text {
+    flex: 1;
+    margin-left: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .coverHeadingBack {
+    display: flex;
+    background-color: lightblue;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: -10px;
+    margin-bottom: 0px;
+  }
+
 
   
   

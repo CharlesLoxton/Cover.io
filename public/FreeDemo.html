@@ -116,6 +116,8 @@
                 <div class="content-left col-lg-6">
                     <h3 class="title-big" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Getting Started</h3>
                     <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Complete this form or select the <span><b><a href="/Package" style="color: blue;">Basic</a></b></span> package and upload your resume so that we can generate a cover letter for you.</p>
+                    <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Your name</b></h6>
+                    <input class="manInput" placeholder="John Doe" id="userName">
                     <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Job Title</b></h6>
                     <input class="manInput" placeholder="Junior Software Developer" id="job">
                     <h6 class="mt-4" style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><b>Skills</b></h6>
@@ -130,14 +132,26 @@
                 <div class="content-right col-lg-6 pl-lg-4 mt-lg-0 mt-md-5 mt-5 align-self">
                     <div class="row content4-right-grids mb-lg-5 mb-5">
                         <!--<img src="./assets/images/Cover Letter.png" style="max-width: 700px;">-->
-                        <div class="coverLetterBack" id="resultText">
-                            <h6 style="text-align: center;" id="outputHeading"><b>Example Output</b></h6>
-                            <p style="font-size: 15px;" id="noCopy">Dear Hiring Manager,</p>
-                            <p style="font-size: 15px;" id="noCopy">I am writing to express my interest in the Junior Software Developer position at your company. As a computer science graduate and a Microsoft Certified Azure AI Engineer Associate, I have a strong foundation in software development and am excited to continue growing my skills and experience.</p>
-                            <p style="font-size: 15px;" id="noCopy">During my time as a Software Engineering Intern at Microsoft and a Junior Developer at ai-cover, I gained valuable experience working with a variety of technologies, including .NET 6, Azure, AWS, Node.js, Redis, MongoDB, MySQL, and Docker. I have a proven track record of delivering high-quality solutions and collaborating effectively with teams.</p>
-                            <p style="font-size: 15px;" id="noCopy">I am confident in my ability to contribute to your team as a Junior Software Developer and am eager to use my skills and experience to help your company succeed. I am committed to continuous learning and staying up-to-date with the latest technologies and best practices.</p>
-                            <p style="font-size: 15px;" id="noCopy">Thank you for considering my application. I would welcome the opportunity to further discuss how I can contribute to your team as a Junior Software Developer.</p>
-                            <p style="font-size: 15px;" id="noCopy">Sincerely,<br>[Your Name]</p>
+                        <div class="coverLetterBack">
+                            <div class="coverHeadingBack">
+                                <button id="image-button" class="profileButton">
+                                    <img id="button-image" class="profilepic" src="./assets/images/team1.jpg">
+                                    <input type="file" id="file-input" style="display:none">
+                                </button>
+                                <div class="img-text">
+                                    <h3><b id="headingName">John Doe</b></h3>
+                                    <h5 id="jobHeading" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Software Developer</h5>
+                                </div>
+                            </div>
+                            <div id="resultText">
+                                <h6 style="text-align: center;" id="outputHeading"><b>Example Cover Letter</b></h6>
+                                <p style="font-size: 15px;" id="noCopy">Dear Hiring Manager,</p>
+                                <p style="font-size: 15px;" id="noCopy">I am writing to express my interest in the Junior Software Developer position at your company. As a computer science graduate and a Microsoft Certified Azure AI Engineer Associate, I have a strong foundation in software development and am excited to continue growing my skills and experience.</p>
+                                <p style="font-size: 15px;" id="noCopy">During my time as a Software Engineering Intern at Microsoft and a Junior Developer at ai-cover, I gained valuable experience working with a variety of technologies, including .NET 6, Azure, AWS, Node.js, Redis, MongoDB, MySQL, and Docker. I have a proven track record of delivering high-quality solutions and collaborating effectively with teams.</p>
+                                <p style="font-size: 15px;" id="noCopy">I am confident in my ability to contribute to your team as a Junior Software Developer and am eager to use my skills and experience to help your company succeed. I am committed to continuous learning and staying up-to-date with the latest technologies and best practices.</p>
+                                <p style="font-size: 15px;" id="noCopy">Thank you for considering my application. I would welcome the opportunity to further discuss how I can contribute to your team as a Junior Software Developer.</p>
+                                <p style="font-size: 15px;" id="noCopy">Sincerely,<br><b>John Doe</b></p>
+                            </div>
                         </div>
                     </div>
                 </div>

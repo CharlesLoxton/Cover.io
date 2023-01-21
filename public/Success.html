@@ -11,6 +11,10 @@
         gtag('config', 'AW-11058287880');
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -101,10 +105,22 @@
     <!-- about2 section -->
     <section class="w3l-about2 py-5" style="margin-bottom: 10%;">
         <div class="container py-md-5 py-4">
-            <div class="coverLetterBack" id="resultText">
-                <h6 style="text-align: center;" id="outputHeading"><b>Cover Letter</b></h6>
-                <p style="font-size: 15px;" id="outputText"></p>
-                
+            <div class="coverLetterBack" id="pdfOutput">
+                <div class="coverHeadingBack">
+                    <canvas id="canvas" width="500" height="500" style="display:none"></canvas>
+                    <button id="image-button" class="profileButton">
+                        <img id="button-image" class="profilepic" src="./assets/images/team1.jpg">
+                        <input type="file" id="file-input" style="display:none">
+                    </button>
+                    <div class="img-text">
+                        <h3><b id="headingName"></b></h3>
+                        <h5 id="jobHeading" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"></h5>
+                    </div>
+                </div>
+                <div id="resultText">
+                    <h6 style="text-align: center;" id="outputHeading"><b>Cover Letter</b></h6>
+                    <p style="font-size: 15px;" id="outputText"></p>
+                </div>
             </div>
         </div>
     </section>

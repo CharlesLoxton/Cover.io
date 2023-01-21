@@ -12,6 +12,7 @@ import ConvertAPI from 'convertapi';
 import sharp from "sharp";
 import { callFreeOpenAI } from "./functions/callFreeOpenAI.js";
 
+
 const convertapi = new ConvertAPI(process.env.CONVERT_API);
 
 const storage = multer.diskStorage({
@@ -214,8 +215,12 @@ app.post('/Pay', (req, res) => {
 app.post('/PayDemo', (req, res) => {
 
   let bodyString = JSON.stringify(req.body.text);
+  let name = JSON.stringify(req.body.name);
+  let job = JSON.stringify(req.body.job);
   let encodedNumbers = encodeURIComponent(bodyString);
-  let baseUrl = `${process.env.SUCCESS_URL}?text=${encodedNumbers}`;
+  let encodedJob = encodeURIComponent(job);
+  let encodedName = encodeURIComponent(name);
+  let baseUrl = `${process.env.SUCCESS_URL}?text=${encodedNumbers}&job=${encodedJob}&name=${encodedName}`;
 
   var create_payment_json = {
       "intent": "sale",
@@ -291,12 +296,13 @@ catch(err){
 
 app.post(`/freeupload`, async (req, res) => {
 
+  const name = req.body.name;
   const job = req.body.job;
   const skills = req.body.skills;
   const experience = req.body.experience;
   const education = req.body.education;
 
-  await callFreeOpenAI(job, skills, education, experience)
+  await callFreeOpenAI(name, job, skills, education, experience)
   .then((result) => {
     res.send({text: result.split(/\n\n|  /).filter(item => item !== ''), error: false});
   })
