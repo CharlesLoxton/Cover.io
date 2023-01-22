@@ -190,14 +190,14 @@ app.post('/Pay', (req, res) => {
                 "items": [{
                     "name": "Basic Plan",
                     "sku": "Cover Letter",
-                    "price": "0.99",
+                    "price": "1.99",
                     "currency": "USD",
                     "quantity": 1
                 }]
             },
             "amount": {
                 "currency": "USD",
-                "total": "0.99"
+                "total": "1.99"
             },
             "description": "AI-Cover Basic Plan. 1 Cover Letter"
         }]
@@ -236,14 +236,14 @@ app.post('/PayDemo', (req, res) => {
               "items": [{
                   "name": "Basic Plan",
                   "sku": "Cover Letter",
-                  "price": "0.49",
+                  "price": "0.99",
                   "currency": "USD",
                   "quantity": 1
               }]
           },
           "amount": {
               "currency": "USD",
-              "total": "0.49"
+              "total": "0.99"
           },
           "description": "AI-Cover Basic Plan. 1 Cover Letter"
       }]
