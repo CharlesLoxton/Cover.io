@@ -159,7 +159,7 @@ app.post('/verifyPayment', (req, res) => {
 
     paypal.payment.get(req.body.paymentId, (error, payment) => {
         if (error) {
-          console.error(error);
+          res.sendFile(path.join(process.cwd(), './public/index.html'));
         } else {
           if (payment.state === 'approved') {
             console.log('Payment has been executed');
@@ -172,7 +172,7 @@ app.post('/verifyPayment', (req, res) => {
   } else if(req.body?.code == process.env.PROMO_CODE) {
     res.send({status: "incomplete"});
   } else {
-    res.send({status: "Failure"});
+    res.sendFile(path.join(process.cwd(), './public/index.html'));
   }
 })
 
@@ -182,7 +182,7 @@ app.post('/execute', (req, res) => {
 
     paypal.payment.get(req.body.paymentId, (error, payment) => {
         if (error) {
-          res.send({status: "Failed"});
+          res.sendFile(path.join(process.cwd(), './public/index.html'));
         } else {
           if (payment.state === 'approved') {
             console.log('Payment has been executed');
@@ -202,7 +202,7 @@ app.post('/execute', (req, res) => {
   } else if(req.body?.code == process.env.PROMO_CODE) {
       res.send({status: "Success"});
   } else {
-    res.send({status: "Failure"});
+    res.sendFile(path.join(process.cwd(), './public/index.html'));
   }
 })
 
