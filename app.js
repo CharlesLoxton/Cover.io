@@ -57,28 +57,7 @@ app.get('/', (req, res) => {
 app.get('/Create', (req, res) => {
 
     if(req.query?.paymentId != null && req.query?.token != null && req.query?.PayerID != null){
-
-        paypal.payment.get(req.query.paymentId, (error, payment) => {
-            if (error) {
-              console.error(error);
-            } else {
-              if (payment.state === 'approved') {
-                console.log('Payment has been executed');
-                res.sendFile(path.join(process.cwd(), './public/index.html'));
-              } else {
-                console.log('Payment has not been executed');
-                paypal.payment.execute(req.query.paymentId, { payer_id: req.query.PayerID }, (error, payment) => {
-                    if (error) {
-                      console.error(error);
-                    } else {
-                      console.log('Payment executed successfully');
-                    }
-                });
-                
-                res.sendFile(path.join(process.cwd(), './public/Create.html'));
-              }
-            }
-          });
+        res.sendFile(path.join(process.cwd(), './public/Create.html'));
     } else if(req.query?.code == process.env.PROMO_CODE) {
         res.sendFile(path.join(process.cwd(), './public/Create.html'));
     } else {
@@ -173,6 +152,59 @@ app.get('/success', (req, res) => {
     }
   });
 });
+
+app.post('/verifyPayment', (req, res) => {
+  
+  if(req.body?.paymentId != null && req.body?.token != null && req.body?.PayerID != null){
+
+    paypal.payment.get(req.body.paymentId, (error, payment) => {
+        if (error) {
+          console.error(error);
+        } else {
+          if (payment.state === 'approved') {
+            console.log('Payment has been executed');
+            res.send({status: "Approved"});
+          } else {
+            res.send({status: "incomplete"});
+          }
+        }
+      });
+  } else if(req.body?.code == process.env.PROMO_CODE) {
+    res.send({status: "incomplete"});
+  } else {
+    res.send({status: "Failure"});
+  }
+})
+
+app.post('/execute', (req, res) => {
+
+  if(req.body?.paymentId != null && req.body?.token != null && req.body?.PayerID != null){
+
+    paypal.payment.get(req.body.paymentId, (error, payment) => {
+        if (error) {
+          res.send({status: "Failed"});
+        } else {
+          if (payment.state === 'approved') {
+            console.log('Payment has been executed');
+            res.send({status: "Approved"});
+          } else {
+            console.log('Payment has not been executed');
+            paypal.payment.execute(req.body.paymentId, { payer_id: req.body.PayerID }, (error, payment) => {
+                if (error) {
+                  res.send({status: "Failed"});
+                } else {
+                  res.send({status: "Success"});
+                }
+            });
+          }
+        }
+      });
+  } else if(req.body?.code == process.env.PROMO_CODE) {
+      res.send({status: "Success"});
+  } else {
+    res.send({status: "Failure"});
+  }
+})
 
 app.post('/Pay', (req, res) => {
     

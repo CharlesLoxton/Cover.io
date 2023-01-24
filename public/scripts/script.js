@@ -7,6 +7,44 @@ let loading  = false;
 let currentYear = new Date().getFullYear();
 document.getElementById("date").innerHTML += `${currentYear} ai-cover | All rights reserved`;
 
+window.onload = function() {
+
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var paymentId = urlParams.get('paymentId');
+    var token = urlParams.get('token');
+    var PayerID = urlParams.get('PayerID');
+    var code = urlParams.get('code');
+
+    fetch("/verifyPayment", {
+      method: "post",
+      body: JSON.stringify({
+        paymentId,
+        token,
+        PayerID,
+        code
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+        return response.text();
+    }).then(data => {
+      console.log(data);
+      if(JSON.parse(data).status == "Approved"){
+        loading = true;
+        btnUpload.style.display = "none";
+        var storedValue = sessionStorage.getItem("letter");
+
+        if(storedValue != null){
+          if(resultText.value == ""){
+          writeLetter(storedValue);
+        }
+        };
+      }
+    })    
+}
+
 btnUpload.addEventListener("click", () => {
     
     if(loading) return;
@@ -25,10 +63,15 @@ btnUpload.addEventListener("click", () => {
     }).then(response => {
         return response.text();
     }).then(extractedText => {
-        writeLetter(extractedText);
-        console.log(extractedText);
-        loading = false;
-        btnUpload.innerHTML = "Upload";
+
+        if(extractedText == "An error occurred, please try again"){
+          loading = false;
+          btnUpload.innerHTML = "Upload";
+          writeLetter(extractedText);
+        } else {
+          execute(extractedText);
+        }
+        
     })    
 });
 
@@ -56,5 +99,42 @@ function copyText() {
     }, function(err) {
       console.error('Error copying text: ', err);
     });
-  }
+}
+
+function execute(text){
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var paymentId = urlParams.get('paymentId');
+    var token = urlParams.get('token');
+    var PayerID = urlParams.get('PayerID');
+    var code = urlParams.get('code');
+
+    fetch("/execute", {
+      method: "post",
+      body: JSON.stringify({
+        paymentId,
+        token,
+        PayerID,
+        code
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+        return response.text();
+    }).then(data => {
+      if(JSON.parse(data).status == "Success"){
+        writeLetter(text);
+        loading = true;
+        btnUpload.innerHTML = "Upload";
+        btnUpload.style.display = "none";
+        sessionStorage.setItem("letter", text);
+      } else {
+        writeLetter("Error with payment, check your balance or reselect the Basic package and try again...");
+        loading = false;
+        btnUpload.innerHTML = "Upload";
+        btnUpload.style.display = "none";
+      }
+    })    
+}
 

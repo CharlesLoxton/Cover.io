@@ -9,7 +9,7 @@ export const callOpenAI = async (body) => {
     try{
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Write me a cover letter, this is my CV: ${body}`,
+        prompt: `Write me a descriptive and passionate cover letter, this is my CV: ${body}`,
         max_tokens: 3000,
         temperature: 0,
       });
