@@ -31,7 +31,7 @@ window.onload = function() {
         return response.text();
     }).then(data => {
       console.log(data);
-      if(JSON.parse(data).status == "Approved"){
+      if(JSON.parse(data).status == "Approved" || JSON.parse(data).status == "Failed"){
         loading = true;
         btnUpload.style.display = "none";
         var storedValue = sessionStorage.getItem("letter");
