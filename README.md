@@ -11,6 +11,7 @@
 -  RETURN_URL=http://localhost:3000/Create
 -  CANCEL_URL=http://localhost:3000/Package
 -  DEMO_URL=http://localhost:3000/demo
+-  SUCCESS_URL=http://localhost:8081/success
 -  OPEN_AI_KEY={Your own key}
 -  SPACE_OCR_KEY={Your own key}
 -  CONVERT_API={Your own key}
