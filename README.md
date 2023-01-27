@@ -12,10 +12,10 @@
 -  CANCEL_URL=http://localhost:3000/Package
 -  DEMO_URL=http://localhost:3000/demo
 -  SUCCESS_URL=http://localhost:8081/success
+-  DOMAIN=http://localhost:3000
 -  OPEN_AI_KEY={Your own key}
 -  SPACE_OCR_KEY={Your own key}
 -  CONVERT_API={Your own key}
 -  PROMO_CODE={Your promo code}
--  DOMAIN=http://localhost:3000
 
 ## Only commit changes to the Development branch
