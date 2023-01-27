@@ -16,6 +16,6 @@ export const callOpenAI = async (body) => {
 
       return response.data.choices[0].text;
     }catch(err){
-      console.log("Error with chatGPT " + err);
+      throw new Exception("Error with chat GPT");
     }
 }

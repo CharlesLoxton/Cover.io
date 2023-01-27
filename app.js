@@ -11,7 +11,7 @@ import { v4 } from "uuid";
 import ConvertAPI from 'convertapi';
 import sharp from "sharp";
 import { callFreeOpenAI } from "./functions/callFreeOpenAI.js";
-
+import axios from 'axios';
 
 const convertapi = new ConvertAPI(process.env.CONVERT_API);
 
@@ -293,37 +293,52 @@ app.post('/PayDemo', (req, res) => {
 app.post('/upload', upload.single('avatar'), async (req, res) => {
 
   try{
-    const newFileName = req.file.filename.replace('.pdf', '');
+    const response = await axios.post(`${process.env.DOMAIN}/verifyPayment`, req.body);
 
-    convertapi.convert('png', {
-      File: `/tmp/${req.file.filename}`,
-    }, 'pdf').then(function(result) {
-      result.saveFiles('/tmp')
-      .then(async () => {
+    if(response.data.status == "incomplete"){
+      const newFileName = req.file.filename.replace('.pdf', '');
 
-        sharp(`/tmp/${newFileName}.png`).resize({ width: 1024 }).toFile(`/tmp/${newFileName}Resized.png`)
-        .then(async function(newFileInfo) {
-          let text = await extractText(`/tmp/${newFileName}Resized.png`);
+      convertapi.convert('png', {
+        File: `/tmp/${req.file.filename}`,
+      }, 'pdf').then(function(result) {
+        result.saveFiles('/tmp')
+        .then(async () => {
+  
+          sharp(`/tmp/${newFileName}.png`).resize({ width: 1024 }).toFile(`/tmp/${newFileName}Resized.png`)
+          .then(async function(newFileInfo) {
+            let text = await extractText(`/tmp/${newFileName}Resized.png`);
+  
+            deleteFile(`/tmp/${newFileName}.png`);
+            deleteFile(`/tmp/${newFileName}Resized.png`);
+            deleteFile(`/tmp/${req.file.filename}`);
+  
+            var str = text.ParsedResults[0].ParsedText;
+            
+            var successText = await callOpenAI(str);
 
-          deleteFile(`/tmp/${newFileName}.png`);
-          deleteFile(`/tmp/${newFileName}Resized.png`);
-          deleteFile(`/tmp/${req.file.filename}`);
-
-          var str = text.ParsedResults[0].ParsedText;
-
-          res.send(await callOpenAI(str));
-          })
-        .catch(function(err) {
-          console.log("Error occured");
-          res.send("An error occurred, please try again")
-        });
-        
+            if(successText != null){
+              const execute = await axios.post(`${process.env.DOMAIN}/execute`, req.body);
+              if(execute.data.status == "Success"){
+                res.send({status: 200, text: successText});
+              } else {
+                res.send({status: 400, text: "Error with payment, check your balance and try again..."});
+              }
+            }
+            
+            })
+            .catch(function(err) {
+              console.log("Error occured");
+              res.send({status: 400, text: "An error occurred, please try again"});
+            });
+          });
       });
-    });
-}
-catch(err){
-    console.log(err);
-}
+    } else {
+      res.send({status: 400, text: "Payment already completed..."});
+    }
+  }
+  catch(err){
+    res.send({status: 400, text: "Error with server..."});
+  }
 });
 
 app.post(`/freeupload`, async (req, res) => {

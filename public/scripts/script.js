@@ -9,40 +9,14 @@ document.getElementById("date").innerHTML += `${currentYear} ai-cover | All righ
 
 window.onload = function() {
 
-    var queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var paymentId = urlParams.get('paymentId');
-    var token = urlParams.get('token');
-    var PayerID = urlParams.get('PayerID');
-    var code = urlParams.get('code');
+    var storedValue = sessionStorage.getItem("letter");
 
-    fetch("/verifyPayment", {
-      method: "post",
-      body: JSON.stringify({
-        paymentId,
-        token,
-        PayerID,
-        code
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-        return response.text();
-    }).then(data => {
-      console.log(data);
-      if(JSON.parse(data).status == "Approved" || JSON.parse(data).status == "Failed"){
-        loading = true;
+    if(storedValue != null){
+      if(resultText.value == ""){
         btnUpload.style.display = "none";
-        var storedValue = sessionStorage.getItem("letter");
-
-        if(storedValue != null){
-          if(resultText.value == ""){
-          writeLetter(storedValue);
-        }
-        };
+        writeLetter(storedValue);
       }
-    })    
+    };
 }
 
 btnUpload.addEventListener("click", () => {
@@ -50,11 +24,22 @@ btnUpload.addEventListener("click", () => {
     if(loading) return;
     if(inputFile.files[0] == null) return;
 
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var paymentId = urlParams.get('paymentId');
+    var token = urlParams.get('token');
+    var PayerID = urlParams.get('PayerID');
+    var code = urlParams.get('code');
+
     resultText.value = "";
     btnUpload.innerHTML = "Loading..."
     const formData = new FormData();
 
     formData.append("avatar", inputFile.files[0]);
+    formData.append("paymentId", paymentId);
+    formData.append("token", token);
+    formData.append("PayerID", PayerID);
+    formData.append("code", code);
     loading = true;
 
     fetch("/upload", {
@@ -62,15 +47,19 @@ btnUpload.addEventListener("click", () => {
         body: formData
     }).then(response => {
         return response.text();
-    }).then(extractedText => {
+    }).then(data => {
 
-        if(extractedText == "An error occurred, please try again"){
-          loading = false;
-          btnUpload.innerHTML = "Upload";
-          writeLetter(extractedText);
-        } else {
-          execute(extractedText);
-        }
+      if(JSON.parse(data).status == 200){
+        writeLetter(JSON.parse(data).text);
+        loading = false;
+        btnUpload.innerHTML = "Upload";
+        btnUpload.style.display = "none";
+        sessionStorage.setItem("letter", JSON.parse(data).text);
+      } else {
+        writeLetter(JSON.parse(data).text);
+        loading = false;
+        btnUpload.innerHTML = "Upload";
+      }
         
     })    
 });
@@ -99,42 +88,5 @@ function copyText() {
     }, function(err) {
       console.error('Error copying text: ', err);
     });
-}
-
-function execute(text){
-    var queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var paymentId = urlParams.get('paymentId');
-    var token = urlParams.get('token');
-    var PayerID = urlParams.get('PayerID');
-    var code = urlParams.get('code');
-
-    fetch("/execute", {
-      method: "post",
-      body: JSON.stringify({
-        paymentId,
-        token,
-        PayerID,
-        code
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-        return response.text();
-    }).then(data => {
-      if(JSON.parse(data).status == "Success"){
-        writeLetter(text);
-        loading = true;
-        btnUpload.innerHTML = "Upload";
-        btnUpload.style.display = "none";
-        sessionStorage.setItem("letter", text);
-      } else {
-        writeLetter("Error with payment, check your balance or reselect the Basic package and try again...");
-        loading = false;
-        btnUpload.innerHTML = "Upload";
-        btnUpload.style.display = "none";
-      }
-    })    
 }
 
