@@ -78,7 +78,7 @@ demoBtn.addEventListener("click", () => {
           let btn = document.createElement("button");
           btn.classList.add("downloadBtn");
           btn.id = "downloadBtn";
-          btn.innerHTML = "Save PDF ($0.99)";
+          btn.innerHTML = "Save PDF ($0.49)";
           resultText.appendChild(btn);
           btn.addEventListener("click", () => {
             payDemo();

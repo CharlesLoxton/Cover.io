@@ -266,18 +266,18 @@ app.post('/PayDemo', (req, res) => {
       "transactions": [{
           "item_list": {
               "items": [{
-                  "name": "Basic Plan",
+                  "name": "Save Cover Letter",
                   "sku": "Cover Letter",
-                  "price": "0.99",
+                  "price": "0.49",
                   "currency": "USD",
                   "quantity": 1
               }]
           },
           "amount": {
               "currency": "USD",
-              "total": "0.99"
+              "total": "0.49"
           },
-          "description": "AI-Cover Basic Plan. 1 Cover Letter"
+          "description": "AI-Cover Basic Plan. Save 1 Cover Letter"
       }]
   };
 
